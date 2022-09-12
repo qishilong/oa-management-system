@@ -1,0 +1,46 @@
+.divForm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 320px;
+  width: 320px;
+  transform: translate(-50%, -50%);
+  padding: 36px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
+}
+.divForm .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.divForm .logo img {
+  width: 40px;
+  margin-right: 8px;
+}
+.divForm .logo span {
+  font-size: 16px;
+  color: #1890ff;
+  font-weight: bold;
+  background-image: -webkit-gradient(linear, 37.219838% 34.532506%, 36.425669% 93.178216%, from(#29cdff), to(#0a60ff), color-stop(0.37, #148eff));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.divForm .ant-btn-block {
+  margin: 0 0 20px;
+}
+.divForm .row-6-18 {
+  font-size: 12px;
+  color: #888;
+  cursor: pointer;
+}
+.divForm .align-right {
+  text-align: right;
+}
+.divForm .align-right svg {
+  margin-left: 2px;
+}
+.divForm .ant-input-group-addon {
+  padding: 0;
+  border: 0 solid #d9d9d9;
+}
