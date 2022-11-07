@@ -1,0 +1,9 @@
+{
+	"required": " 字段丢失,您没有正确传递参数类型",
+	"missing_field": " 字段丢失,您没有正确传递该字段",
+	"should not be empty": "不能为空",
+	"invalid": "无效",
+	"should be an email": "应该是电子邮件格式",
+	"should be a number": "有些字段需要是数字",
+	"should be a string": "should be a string"
+}

@@ -1,0 +1,10 @@
+"_id",icon,identity,route,zhName
+615d6be0f75f2f9fdc6458b9,dashboard,1,/dashboard,员工分析
+615d6dcff75f2f9fdc6458c2,attendance,0,/attendance,出勤统计
+6161acd3f75f2f73c46a3bbe,team,0,/staff,员工
+6167cfb55764855210508b9d,department,1,/department,部门
+6167cff35764855210508b9e,level,0,/level,职级
+6167d14f5764855210508ba3,assessment,0,/assessment,绩效考核
+6167d1685764855210508bab,salary,0,/salary,调薪记录
+6167d1735764855210508baf,rewardAndPunishment,0,/rewardAndPunishment,奖惩记录
+61779993576485639835771c,bar-chart,0,/attendanceInfo,考勤信息

@@ -1,6 +1,7 @@
-import React from 'react';
-import IconMap from '../../../components/IconMap';
-import { loginRules } from '../../../utils/rules';
+import React from "react";
+
+import IconMap from "../../../components/IconMap";
+import { loginRules } from "../../../utils/rules";
 
 const AccountLogin = ({ Input, FormItem }) => {
   return (
