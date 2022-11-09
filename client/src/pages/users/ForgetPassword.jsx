@@ -25,7 +25,6 @@ function ForgetPassword({ history }) {
 
     const checkConfirmPassword = async (newPassword) => {
         const { data, msg } = await $http.resetPassword({ newPassword });
-        console.log(data, msg);
         if (data) {
             message.success(msg);
             history.push('/users/login');

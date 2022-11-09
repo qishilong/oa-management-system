@@ -1,16 +1,31 @@
-import React from 'react';
 import {
-  ArrowRightOutlined,
-  UserOutlined,
-  LockOutlined,
-  MobileOutlined,
-  CodeSandboxOutlined,
-} from '@ant-design/icons';
+    AccountBookOutlined,
+    AimOutlined,
+    ApartmentOutlined,
+    ArrowRightOutlined,
+    CodeSandboxOutlined,
+    DashboardOutlined,
+    InsertRowAboveOutlined,
+    LineChartOutlined,
+    LockOutlined,
+    MobileOutlined,
+    SmileOutlined,
+    TeamOutlined,
+    UserOutlined,
+} from "@ant-design/icons";
 
 export default {
-  arrRowRight: <ArrowRightOutlined />,
-  userIcon: <UserOutlined />,
-  passwordIcon: <LockOutlined />,
-  mobileIcon: <MobileOutlined />,
-  codeIcon: <CodeSandboxOutlined />,
+    arrowRight: <ArrowRightOutlined />,
+    userIcon: <UserOutlined />,
+    mobileIcon: <MobileOutlined />,
+    smCodeIcon: <CodeSandboxOutlined />,
+    passwordIcon: <LockOutlined />,
+    department: <ApartmentOutlined />,
+    level: <AimOutlined />,
+    assessment: <InsertRowAboveOutlined />,
+    reward: <SmileOutlined />,
+    salary: <AccountBookOutlined />,
+    dashboard: <DashboardOutlined />,
+    attendance: <LineChartOutlined />,
+    team: <TeamOutlined />,
 };
