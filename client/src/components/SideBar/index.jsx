@@ -41,7 +41,7 @@ return <Menu items={items} />;
             <div className="brand">
                 <div className="logo">
                     <img src={logo} alt="" />
-                    <h1>渡一教育</h1>
+                    <h1>人事管理系统</h1>
                 </div>
             </div>
             <div className="menu-container">
