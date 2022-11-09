@@ -1,46 +1,72 @@
-.divForm {
+.form {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
-  height: 320px;
+  margin: -160px 0 0 -160px;
   width: 320px;
-  transform: translate(-50%, -50%);
+  height: 320px;
   padding: 36px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
 }
-.divForm .logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.form.forget-password {
+  height: 280px;
+}
+.form .forget-password-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #888;
+  text-align: center;
   margin-bottom: 20px;
 }
-.divForm .logo img {
+.form button {
+  width: 100%;
+}
+.logo {
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img {
   width: 40px;
   margin-right: 8px;
 }
-.divForm .logo span {
+.logo span {
+  vertical-align: text-bottom;
   font-size: 16px;
+  text-transform: uppercase;
+  display: inline-block;
+  font-weight: 700;
   color: #1890ff;
-  font-weight: bold;
   background-image: -webkit-gradient(linear, 37.219838% 34.532506%, 36.425669% 93.178216%, from(#29cdff), to(#0a60ff), color-stop(0.37, #148eff));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.divForm .ant-btn-block {
-  margin: 0 0 20px;
+.ant-spin-container,
+.ant-spin-nested-loading {
+  height: 100%;
 }
-.divForm .row-6-18 {
-  font-size: 12px;
+.login-methods-container {
   color: #888;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
   cursor: pointer;
 }
-.divForm .align-right {
-  text-align: right;
+.login-methods-container.login-methods {
+  justify-content: flex-end;
 }
-.divForm .align-right svg {
-  margin-left: 2px;
+span.anticon.anticon-arrow-right {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
 }
-.divForm .ant-input-group-addon {
+.ant-input-group-addon {
   padding: 0;
-  border: 0 solid #d9d9d9;
+  border: 0;
 }

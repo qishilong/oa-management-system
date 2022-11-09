@@ -2,4 +2,13 @@
 import ajax from "../http.js";
 
 // 用户登录接口api
-export const userLogin = (params) => ajax.post("/login", params)
+export const userLogin = (params) => ajax.post('/login', params);
+
+// 获取手机验证
+export const getSmCode = (params) => ajax.get('/getCode', params);
+
+// 检测验证码是否正确
+export const checkSmCode = (params) => ajax.get('/checkSmCode', params);
+
+// 重新设置密码
+export const resetPassword = (params) => ajax.post('/resetPassword', params);

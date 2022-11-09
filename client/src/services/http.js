@@ -1,5 +1,5 @@
 import { message } from "antd";
-import { qs } from "qs";
+import qs from "qs";
 import { history } from "umi";
 
 const fetch = require('dva').fetch;
