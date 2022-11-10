@@ -2,7 +2,7 @@ import "./css/login.less";
 
 import { Button, Col, Form, Input, Row } from "antd";
 import logoImg from "common/images/logo.svg";
-import IconMap from "components/IconMap";
+import iconMap from "components/iconMap";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -41,7 +41,7 @@ const Login = ({ history, match, location }) => {
                         block={true}
                         type="primary"
                         htmlType="submit"
-                        loading={loading.effects['user/login']}
+                        loading={loading.effects["user/login"]}
                     >
                         登录
                     </Button>
@@ -51,7 +51,7 @@ const Login = ({ history, match, location }) => {
                         <p
                             className="login-methods-container"
                             onClick={() => {
-                                history.push('/users/forgetPassword');
+                                history.push("/users/forgetPassword");
                             }}
                         >
                             忘记密码?
@@ -65,9 +65,9 @@ const Login = ({ history, match, location }) => {
                             className="login-methods-container login-methods"
                         >
                             {!type
-                                ? '使用手机号+验证码登录'
-                                : '使用账号密码登录'}
-                            {IconMap.arrRowRight}
+                                ? "使用手机号+验证码登录"
+                                : "使用账号密码登录"}
+                            {iconMap.arrRowRight}
                         </p>
                     </Col>
                 </Row>

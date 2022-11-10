@@ -3,7 +3,7 @@ import { Button, message } from "antd";
 import $http from "api";
 import React, { useState } from "react";
 
-import IconMap from "../../../components/IconMap";
+import iconMap from "../../../components/iconMap";
 import { loginRules } from "../../../utils/rules";
 
 const SmCodeLogin = ({ Input, FormItem, form }) => {
@@ -14,7 +14,7 @@ const SmCodeLogin = ({ Input, FormItem, form }) => {
     const sendVerificationCode = async () => {
         setCurrentStatus(false);
         // 获取当前用户输入的手机号
-        const mobile = form.getFieldValue('mobile');
+        const mobile = form.getFieldValue("mobile");
         const resp = await $http.getSmCode({ mobile });
         message.success(resp.msg);
         setDisabled(true);
@@ -36,7 +36,7 @@ const SmCodeLogin = ({ Input, FormItem, form }) => {
 
     const inputChange = async () => {
         try {
-            const inputValue = await form.validateFields(['mobile']);
+            const inputValue = await form.validateFields(["mobile"]);
             setDisabled(!disabled);
         } catch (error) {
             setDisabled(true);
@@ -47,7 +47,7 @@ const SmCodeLogin = ({ Input, FormItem, form }) => {
             <FormItem name="mobile" rules={loginRules.mobileRules} hasFeedback>
                 <Input
                     placeholder="请输入手机号"
-                    prefix={IconMap.mobileIcon}
+                    prefix={iconMap.mobileIcon}
                     onChange={inputChange}
                 />
             </FormItem>
@@ -58,14 +58,14 @@ const SmCodeLogin = ({ Input, FormItem, form }) => {
             >
                 <Input
                     placeholder="请输入验证码"
-                    prefix={IconMap.codeIcon}
+                    prefix={iconMap.codeIcon}
                     addonAfter={
                         <Button
                             disabled={disabled}
                             onClick={sendVerificationCode}
                         >
                             {currentStatus
-                                ? '发送验证码'
+                                ? "发送验证码"
                                 : `${currentTime}秒后重新发送`}
                         </Button>
                     }

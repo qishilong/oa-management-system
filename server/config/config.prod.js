@@ -74,31 +74,22 @@ module.exports = appInfo => {
     };
 
     // const isProduction = process.env.NODE_ENV === 'production';
-    const isProduction = process.env.NODE_ENV === "production";
-    // config.mongoose = !isProduction
-    //     ? {
-    //           url: "mongodb://123.56.119.225:26030/person_admin", // user是collection(数据库)名称
-    //           options: {
-    //               useNewUrlParser: true,
-    //               useUnifiedTopology: true,
-    //               user: "hg9558@126.com_person_admin",
-    //               pass: "hangang9558",
-    //           }, // 其他配置项
-    //       }
-    //     : {
-    //           url: "mongodb://127.0.0.1:27017/staff",
-    //       };
-    config.mongoose = !isProduction
-        ? {
-              url: "mongodb://localhost:27017/staff", // user是collection(数据库)名称
-              options: {}, // 其他配置项
-          }
-        : {
-              url: "mongodb://localhost:27017/staff",
-          };
+    // config.mongoose = {
+    //     url: "mongodb://123.56.119.225:26030/person_admin", // user是collection(数据库)名称
+    //     options: {
+    //         useNewUrlParser: true,
+    //         useUnifiedTopology: true,
+    //         user: "hg9558@126.com_person_admin",
+    //         pass: "hangang9558",
+    //     },
+    // };
+    config.mongoose = {
+        url: "mongodb://localhost:27017/staff",
+        options: {},
+    };
 
     return {
         ...config,
         ...userConfig,
     };
-};;
+};

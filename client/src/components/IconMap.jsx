@@ -3,15 +3,20 @@ import {
     AimOutlined,
     ApartmentOutlined,
     ArrowRightOutlined,
+    BarChartOutlined,
     CodeSandboxOutlined,
     DashboardOutlined,
+    DatabaseOutlined,
     InsertRowAboveOutlined,
     LineChartOutlined,
     LockOutlined,
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
     MobileOutlined,
     SmileOutlined,
     TeamOutlined,
     UserOutlined,
+    WalletOutlined,
 } from "@ant-design/icons";
 
 export default {
@@ -28,4 +33,9 @@ export default {
     dashboard: <DashboardOutlined />,
     attendance: <LineChartOutlined />,
     team: <TeamOutlined />,
+    leftArrow: <MenuFoldOutlined />,
+    rightArrow: <MenuUnfoldOutlined />,
+    rewardAndPunishment: <DatabaseOutlined />,
+    signOut: <WalletOutlined />,
+    "bar-chart": <BarChartOutlined />,
 };

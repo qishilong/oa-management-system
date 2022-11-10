@@ -2,9 +2,9 @@ import logo from "common/images/logo.png";
 import React from "react";
 import { history, Link } from "umi";
 
-import iconMap from "../IconMap";
+import iconMap from "../iconMap";
 
-const SideBar = ({ Sider, Menu }) => {
+const SideBar = ({ Sider, Menu, collapse }) => {
     const pathname = history.location.pathname;
     const route = sessionStorage.getItem("routeList")
         ? JSON.parse(sessionStorage.getItem("routeList"))
@@ -37,11 +37,11 @@ return <Menu items={items} />;
     }));
 
     return (
-        <Sider theme="light" className="side-bar">
+        <Sider theme="light" className="side-bar" collapsed={collapse}>
             <div className="brand">
                 <div className="logo">
-                    <img src={logo} alt="" />
-                    <h1>人事管理系统</h1>
+                    <img src={logo} alt="人事管理系统" />
+                    {!collapse && <h1>人事管理系统</h1>}
                 </div>
             </div>
             <div className="menu-container">
