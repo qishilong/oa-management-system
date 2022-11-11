@@ -15,10 +15,15 @@ const BaseLayout = ({ children }) => {
     const { pathname } = history.location;
     const judgeIsFound = () => {
         if (pathname === "/") {
-            history.replace(routeList[0].route);
+            routeList
+                ? history.replace(routeList[0].route)
+                : history.replace("/users/login");
             return false;
         }
-        return routeList.some((item) => item.route === pathname);
+        return (
+            routeList?.some((item) => item.route === pathname) ||
+            history.replace("/users/login")
+        );
     };
 
     // 改变需要收起侧边栏

@@ -24,11 +24,11 @@ const CommonHeader = ({ Header, collapse, changeCollapse }) => {
                     top: 4,
                 }}
             >
-                {userInfo.userName}
+                {userInfo?.userName || ""}
             </span>
             <Avatar
                 style={{ marginLeft: 0 }}
-                src={userInfo.avatar || default_avatar}
+                src={userInfo?.avatar || default_avatar}
             />
         </>
     );
@@ -48,7 +48,7 @@ const CommonHeader = ({ Header, collapse, changeCollapse }) => {
         },
     ];
 
-    console.log(userInfo);
+    // console.log(userInfo);
     return (
         <Header className="header-wrapper">
             <div className="button" onClick={changeCollapse}>
@@ -57,6 +57,6 @@ const CommonHeader = ({ Header, collapse, changeCollapse }) => {
             <Menu items={items} mode="horizontal" />
         </Header>
     );
-};
+};;;;
 
 export default CommonHeader;
