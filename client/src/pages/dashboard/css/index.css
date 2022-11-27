@@ -1,0 +1,87 @@
+.dashboard-container {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* //- echarts 样式重置 */
+}
+.dashboard-container .staff-amount-container {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.dashboard-container .staff-amount-container .staff-amount_title {
+  font-size: 13px;
+  color: #666;
+  font-weight: 700;
+}
+.dashboard-container .staff-amount-container .staff-amount_content {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard-container .staff-amount-container .staff-amount_content .staff-amount_number {
+  font-family: DIN Condensed;
+  font-weight: 700;
+  font-size: 80px;
+}
+.dashboard-container .staff-amount-container .staff-amount_content .staff-amount_txt {
+  font-size: 40px;
+  font-weight: 700;
+  padding: 5px 15px;
+}
+.dashboard-container .staff-amount-container .staff-amount_main {
+  border-top: 1px solid #e8eaec;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 10px;
+  height: calc(100% - 30px);
+}
+.dashboard-container .staff-amount-container .staff-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 15px;
+}
+.dashboard-container .staff-amount-container .staff-header .staff-list-title {
+  width: 33%;
+  height: 37px;
+  line-height: 37px;
+  font-weight: bold;
+  color: #666;
+}
+.dashboard-container .staff-amount-container .staff-item-container {
+  height: calc(100% - 30px);
+  overflow-y: scroll;
+}
+.dashboard-container .staff-amount-container .staff-item-container .staff-list-item {
+  height: 32px;
+  line-height: 32px;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #e8eaec;
+}
+.dashboard-container .staff-amount-container .staff-item-container .staff-list-item .item {
+  width: 33%;
+}
+.dashboard-container .staff-amount-container .staff-item-container .staff-list-item:nth-child(even),
+.dashboard-container .staff-amount-container .staff-item-container .staff-list-item:hover {
+  background-color: #fafafa;
+}
+.dashboard-container .staff-amount-container .staff-item-container .staff-list-item .danger {
+  color: brown;
+}
+.dashboard-container .react_for_echarts {
+  width: 100%;
+  height: 350px !important;
+}

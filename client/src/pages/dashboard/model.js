@@ -46,6 +46,7 @@ export default {
                         title: "员工性别占比",
                         renderList: data.genderList,
                         styleData: { width: "49.8%", height: "350px" },
+                        showSidebar: true,
                     },
                 ],
                 columnList: [
@@ -58,12 +59,14 @@ export default {
                         title: "部门员工数量",
                         renderList: data.departmentList,
                         styleData: { width: "49.8%", height: "350px" },
+                        br: true
                     },
                 ],
                 marriageData: {
                     title: "员工婚姻状况",
                     renderList: data.marriageList,
                     styleData: { width: "49.8%", height: "350px" },
+                    isEmpty: true
                 },
                 staffData: {
                     title: "工龄最老的10个人",
@@ -74,13 +77,14 @@ export default {
                     title: "员工星座分布",
                     renderList: data.constellationList,
                     styleData: { width: "49.8%", height: "350px" },
+                    isArea: true
                 },
             };
             return { ...state, ...filterData };
         },
     },
     effects: {
-        *analyzeStaff({}, { call, put }) {
+        *analyzeStaff({ }, { call, put }) {
             const { data } = yield call($http.analyzeStaff);
             yield put({ type: "formData", payload: { data } });
         },

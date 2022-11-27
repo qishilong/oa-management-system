@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
+    "echarts": "^5.4.0",
+    "echarts-for-react": "^3.0.2",
     "react": "17.x",
     "react-dom": "17.x",
     "umi": "^3.5.33"
