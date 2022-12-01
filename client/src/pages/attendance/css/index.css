@@ -1,0 +1,28 @@
+.attendance-container {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.attendance-container .list-container {
+  width: 49.8%;
+}
+.attendance-container .block-container {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+.attendance-container .block-container .title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  margin: 0 0 20px 10px;
+}
+.attendance-container .block-container .ant-table-wrapper {
+  flex-grow: 1;
+  overflow-y: auto;
+}
