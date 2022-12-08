@@ -2,7 +2,12 @@ import $http from "api";
 
 export default {
     namespace: "common",
-    state: {},
+    state: {
+        collapse: false,
+    },
+    reducers: {
+        changeCollapse: (state, { payload }) => ({ ...state, ...payload })
+    },
     effects: {
         *queryLoginStatus({ payload }, { put, call }) {
             const {

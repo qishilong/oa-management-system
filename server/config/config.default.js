@@ -90,12 +90,12 @@ module.exports = appInfo => {
     //       };
     config.mongoose = !isProduction
         ? {
-              url: "mongodb://localhost:27017/staff", // user是collection(数据库)名称
-              options: {}, // 其他配置项
-          }
+            url: "mongodb://127.0.0.1:27017/staff", // user是collection(数据库)名称
+            options: {}, // 其他配置项
+        }
         : {
-              url: "mongodb://localhost:27017/staff",
-          };
+            url: "mongodb://127.0.0.1:27017/staff",
+        };
 
     return {
         ...config,

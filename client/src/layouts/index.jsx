@@ -12,6 +12,9 @@ function Layout({ children, history, location }) {
     //   console.log(location);
     //   console.log(children);
     const loading = useSelector((state) => state.loading);
+    // const data = useSelector(state => state)
+    // console.log(data)
+    // console.log(loading);
     const layoutMap = { BaseLayout, LoginLayout };
     const Container = layoutMap[selectLayout(location.pathname)];
     return (

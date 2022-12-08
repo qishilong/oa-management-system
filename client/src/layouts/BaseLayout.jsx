@@ -4,13 +4,15 @@ import { Layout, Menu } from "antd";
 import CommonHeader from "components/CommonHeader";
 import SideBar from "components/SideBar";
 import React, { useState } from "react";
-import { history } from "umi";
+import { history, useSelector, useDispatch } from "umi";
 
 import NotFound from "../pages/404Page";
 
 const { Header, Sider, Content } = Layout;
 const BaseLayout = ({ children }) => {
-    const [collapse, setCollapse] = useState(false);
+    // const [collapse, setCollapse] = useState(false);
+    const { collapse } = useSelector(state => state.common)
+    const dispatch = useDispatch();
     const routeList = JSON.parse(sessionStorage.getItem("routeList"));
     const { pathname } = history.location;
     const judgeIsFound = () => {
@@ -27,8 +29,7 @@ const BaseLayout = ({ children }) => {
     };
 
     // 改变需要收起侧边栏
-    const changeCollapse = () =>
-        setCollapse((prevValue) => (prevValue = !collapse));
+    const changeCollapse = () => dispatch({ type: "common/changeCollapse", payload: { collapse: !collapse } })
 
     return (
         <Layout className="container">

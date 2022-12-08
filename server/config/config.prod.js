@@ -84,7 +84,7 @@ module.exports = appInfo => {
     //     },
     // };
     config.mongoose = {
-        url: "mongodb://localhost:27017/staff",
+        url: "mongodb://127.0.0.1:27017/staff",
         options: {},
     };
 

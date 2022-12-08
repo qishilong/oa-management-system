@@ -1,0 +1,21 @@
+.table-header-container {
+  position: fixed;
+  top: 24px;
+  left: 270px;
+  width: calc(100% - 470px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+.table-header-container.big-style {
+  left: 142px;
+  width: calc(100% - 370px);
+}
+.table-header-container .pagination-container {
+  display: flex;
+  align-items: center;
+}
+.table-header-container .mr-10 {
+  margin-right: 10px;
+}
