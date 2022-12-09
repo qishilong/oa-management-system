@@ -1,0 +1,43 @@
+.filter-wrapper {
+  width: 280px;
+  height: 100%;
+  background-color: #fff;
+  margin: 2px;
+  flex-shrink: 0;
+  padding: 10px 20px;
+  position: relative;
+  transition: 0.2s;
+}
+.filter-wrapper.close {
+  width: 0px;
+  padding: 0 7px;
+}
+.filter-wrapper.close .filter-title-wrapper,
+.filter-wrapper.close .form-container {
+  opacity: 0;
+  transition: 0.2s;
+}
+.filter-wrapper .filter-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter-wrapper .close-tip {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 15px;
+  background-color: #1890ff;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #fff;
+}
+.filter-wrapper .opacity {
+  display: none;
+}
+.filter-wrapper .c-r {
+  cursor: pointer;
+}

@@ -1,8 +1,11 @@
 .attendance-container {
+  position: relative;
+  top: 72px;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 .attendance-container .list-container {
   width: 49.8%;
