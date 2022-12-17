@@ -1,7 +1,6 @@
 import { message } from "antd";
 import qs from "qs";
 import { history } from "umi";
-
 const fetch = require('dva').fetch;
 
 //- 创建响应状态处理函数

@@ -1,96 +1,169 @@
-import { Tag } from "antd";
-import { formatYear, dateFormat } from "utils/dateFormat";
+import { Tag, Image } from "antd";
+import { formatYear, dateFormat, formatBirth } from "utils/dateFormat";
+import imageError from "common/images/load_error.png"
+import { mapData } from "utils/mapData";
 
-const Columns = ({ handleSave, userInfo }) => {
-    /**
-     * accountName: "letvpn"
-        avatar: "https://reactoa.hyfarsight.com/FrBl9IMFBoOS3a6tvN9DnjMSs_cK"
-        bankNumber: "123456789123456789"
-        education: 1
-        graduatedSchool: "天津大学"
-        hometown: "北京市朝阳区"
-        idNumber: "211302198305112819"
-        identity: 0
-        marriage: 0
-        onboardingTime: "2021-11-12T09:43:26.939Z"
-        salary: "4000"
-     */
-
-    /**
-     * accountName: "xiaoming1",
-        avatar: "https://reactoa.hyfarsight.com/Fo2GA0iN6CAQPLLMARb9dHCDr7V-",
-        bankNumber: "123456789123456789",
-        department: null,
-        education: 1,
-        gender: 0,
-        graduatedSchool: "天津大学",
-        hometown: "北京市朝阳区",
-        idNumber: "211302198305112819",
-        identity: 0,
-        level: null,
-        marriage: 0,
-        mobile: "13552752519",
-        onboardingTime: "2021-10-03T07:48:00.868Z",
-        salary: "4000",
-        userName: "小明",
-        __v: 0,
-        _id: "617661370a362d7d382a21b7",
-     */
+const Columns = ({ handleSave, userInfo, openReviewRecord }) => {
 
     const normalList = [
         {
             title: "姓名",
             dataIndex: "userName",
-            width: "200px",
             editable: true,
         },
         {
             title: "联系电话",
             dataIndex: "mobile",
-            width: "200px",
             editable: true,
         },
         {
             title: "职级描述",
             dataIndex: "level",
-            width: "200px",
             render: (data) => data?.levelDescription || "暂无职级描述"
         },
         {
             title: "性别",
             dataIndex: "gender",
-            width: "200px",
             editable: true,
-            render: (gender) => <Tag>{gender === 0 ? "女" : "男"}</Tag>
+            render: (type) => <Tag>{mapData["gender"][type]}</Tag>
         },
         {
             title: "部门",
             dataIndex: "department",
-            width: "200px",
             render: (data) => data?.departmentLeader?.userName || '---',
         },
         {
             title: "部门负责人",
             dataIndex: "department",
-            width: "200px",
             render: (data) => data?.departmentLeader?.userName || '---',
         },
-        {
-            title: "年龄",
-            dataIndex: "idNumber",
-            width: "200px",
-            editable: true,
-            render: (idNumber) => formatYear(idNumber, "age")
-        },
+
     ];
 
     const authList = [
         {
             title: "入职时间",
             dataIndex: "onboardingTime",
-            width: "200px",
             editable: true,
             render: (date) => dateFormat(date, "YYYY-MM-DD")
+        },
+        {
+            title: "年龄",
+            dataIndex: "idNumber",
+            editable: true,
+            render: (idNumber) => formatYear(idNumber, "age")
+        },
+        {
+            title: "头像",
+            dataIndex: "avatar",
+            render: (image) => <Image src={image || "error"} fallback={imageError} />
+        },
+        {
+            title: "籍贯",
+            dataIndex: "hometown",
+            editable: true,
+            render: (hometown) => hometown || "---",
+        },
+        {
+            title: "学历",
+            dataIndex: "education",
+            editable: true,
+            render: (type) => <Tag>{mapData["education"][type]}</Tag>
+        },
+        {
+            title: "婚姻状况",
+            dataIndex: "marriage",
+            editable: true,
+            render: (type) => <Tag>{mapData["marriage"][type]}</Tag>
+        },
+        {
+            title: "生日",
+            dataIndex: "idNumber",
+            render: (id) => formatBirth(id)
+        },
+        {
+            title: "银行卡",
+            dataIndex: "bankNumber",
+            editable: true,
+        },
+        {
+            title: "身份证号",
+            dataIndex: "idNumber",
+            editable: true,
+        },
+        {
+            title: "毕业院校",
+            dataIndex: "graduatedSchool",
+            editable: true,
+        },
+        {
+            title: "绩效考核",
+            dataIndex: "record",
+            render: (record, data) => {
+                return (
+                    <Tag
+                        onClick={() => openReviewRecord(
+                            {
+                                title: "考核记录",
+                                interfaceName: "getAssessmentList",
+                                requestData: {
+                                    queryData: {
+                                        staffName: data._id
+                                    }
+                                },
+                                type: "assessment"
+                            }
+                        )}
+                        className="c-p"
+                    >
+                        查看
+                    </Tag>
+                )
+            }
+        },
+        {
+            title: "奖惩记录",
+            dataIndex: "record",
+            render: (record, data) => {
+                return (
+                    <Tag
+                        onClick={() => openReviewRecord(
+                            {
+                                title: "奖惩记录",
+                                interfaceName: "getRewardAndPunishment",
+                                requestData: {
+                                    staffName: data._id
+                                },
+                                type: "reward"
+                            }
+                        )}
+                        className="c-p"
+                    >
+                        查看
+                    </Tag>
+                )
+            }
+        },
+        {
+            title: "调薪记录",
+            dataIndex: "record",
+            render: (record, data) => {
+                // console.log(record, data)
+                return (
+                    <Tag
+                        onClick={() => openReviewRecord({
+                            title: "调薪记录",
+                            interfaceName: "getSalaryAdjustment",
+                            requestData: {
+                                staffName: data._id
+                            },
+                            type: "salary"
+                        })}
+                    >
+                        查看
+                    </Tag>
+                )
+            }
         },
     ]
 

@@ -14,35 +14,41 @@
   flex-grow: 1;
 }
 #root .container .ant-table-wrapper {
-  flex-wrap: 1;
+  flex-grow: 1;
   background-color: #fff;
   overflow: auto;
 }
-#root .container .ant-table-wrapper .ant-table-container {
+#root .container .ant-table-wrapper .table-container {
   width: 100%;
   height: 100%;
 }
 #root .container .ant-table-wrapper .ant-table-thead > tr > th {
   white-space: nowrap;
 }
-#root .container .ant-table-wrapper .ant-table-tbody td {
+#root .container .ant-table-wrapper .ant-table-row td {
   white-space: nowrap;
 }
-#root .container .ant-table-wrapper .ant-table-tbody .ant-table-row .ant-table-cell .staff-wrapper {
+#root .container .ant-table-wrapper .ant-table-tbody .ant-table-row .ant-table-cell .editable-cell-value-wrap {
   min-width: 130px;
   display: flex;
   justify-content: space-between;
 }
-#root .container .ant-table-wrapper .ant-table-tbody .ant-table-row .ant-table-cell .staff-wrapper .detail-icon {
+#root .container .ant-table-wrapper .ant-table-tbody .ant-table-row .ant-table-cell .editable-cell-value-wrap .detail-icon {
   display: none;
   color: #40a9ff;
   cursor: pointer;
 }
-#root .container .ant-table-wrapper .ant-table-tbody .ant-table-row .ant-table-cell .staff-wrapper input {
+#root .container .ant-table-wrapper .ant-table-tbody .ant-table-row .ant-table-cell .editable-cell-value-wrap input {
   margin-bottom: 0px;
 }
-#root .container .ant-table-wrapper .ant-table-tbody .ant-table-row .ant-table-cell .staff-wrapper:hover .detail-icon {
+#root .container .ant-table-wrapper .ant-table-tbody .ant-table-row .ant-table-cell .editable-cell-value-wrap:hover .detail-icon {
   display: block;
+}
+#root .container .ant-table-wrapper .ant-image {
+  width: 50px;
+}
+#root .container .c-p {
+  cursor: pointer;
 }
 #root .ant-layout-header {
   width: 100%;
@@ -78,11 +84,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0px 24px;
+  padding: 0 24px;
   box-shadow: 0 1px 9px -3px rgba(0, 0, 0, 0.2);
 }
 #root .side-bar .brand .logo {
-  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;

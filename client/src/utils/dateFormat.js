@@ -25,7 +25,7 @@ export const formatYear = (id, type) => {
     const dateNow = new Date();
 
     if (type === 'age') {
-        year = formatBirth(id); //-
+        year = formatBirth(id);
     }
     return dateNow.getFullYear() - year.substring(0, 4);
 }
