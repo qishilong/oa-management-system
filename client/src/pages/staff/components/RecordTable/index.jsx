@@ -14,7 +14,7 @@ const RenderType = ({ type, interfaceName, requestData }) => {
         // console.log(interfaceName)
         const res = await $http[interfaceName]({ ...requestData, page })
         // console.log(res)
-        setSource(prev => prev = res.data.list);
+        setSource(prev => prev = res.data | res.data.list);
         setTotal(prev => prev = res.total | res.data.total)
     }
 

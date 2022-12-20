@@ -8,7 +8,6 @@
 #root .container .main-content {
   position: relative;
   height: 100%;
-  overflow-y: scroll;
   display: flex;
   justify-content: flex-start;
   flex-grow: 1;
@@ -17,6 +16,9 @@
   flex-grow: 1;
   background-color: #fff;
   overflow: auto;
+  position: absolute;
+  height: 100%;
+  width: 80%;
 }
 #root .container .ant-table-wrapper .table-container {
   width: 100%;
@@ -45,7 +47,10 @@
   display: block;
 }
 #root .container .ant-table-wrapper .ant-image {
-  width: 50px;
+  width: 40px;
+}
+#root .container .closeSearch {
+  width: calc(100% - 18px);
 }
 #root .container .c-p {
   cursor: pointer;
@@ -123,4 +128,7 @@
 }
 #root .side-bar .menu-container :global .ant-menu-inline {
   border-right: none;
+}
+#root .c-r {
+  cursor: pointer;
 }

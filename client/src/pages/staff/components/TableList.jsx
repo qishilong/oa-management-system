@@ -1,17 +1,31 @@
 import { useState } from 'react'
-import { Table } from "antd";
+import { Table, message } from "antd";
 import Columns from "./Columns"
 import { EditableCell, EditableRow } from '../../../components/Editable';
 import Dialog from '../../../components/Dialog';
 import RenderType from './RecordTable';
+import classnames from "classnames"
+import { useDispatch } from 'umi';
+import $http from "api";
 
-const TableList = ({ userInfo, staffList, loading }) => {
+const TableList = ({ userInfo, staffList, loading, closeStatus, reloadPage }) => {
     const [currentRecord, setCurrentRecord] = useState(null);
     const [dialogStatus, setDialogStatus] = useState(false);
 
+    const dispatch = useDispatch();
+
     // 修改之后的保存事件
-    const handleSave = (...e) => {
-        console.log(e)
+    const handleSave = async (obj) => {
+        if (obj.type === "mobile") {
+            const checkData = { mobile: obj.updateVal }
+            const { data, mag } = await $http.checkIsExists({ checkData });
+            if (data) return message.error(mag)
+        }
+        // 修改表单操作
+        const { code, msg } = await $http.updateStaff(obj);
+        if (code) return message.error(msg);
+        message.success(msg);
+        reloadPage()
     }
 
     // 打开员工指定表格
@@ -21,9 +35,13 @@ const TableList = ({ userInfo, staffList, loading }) => {
         setDialogStatus(prev => prev = true);
     }
 
+    // 打开员工详情界面
+    const openDetailDialog = (_id) => dispatch({ type: "staff/_getStaffDetail", payload: { _id } })
+
     return (
         <div>
             <Table
+                className={classnames({ closeSearch: closeStatus })}
                 components={
                     {
                         body: {
@@ -35,10 +53,14 @@ const TableList = ({ userInfo, staffList, loading }) => {
                 bordered={true}
                 scroll={{ x: true }}
                 dataSource={staffList}
-                rowKey={record => record._id}
+                rowKey={record => {
+                    // console.log(record._id, 1111)
+                    // console.log(record, 22222)
+                    return record._id
+                }}
                 pagination={false}
                 loading={loading.effects["staff/_initStaffData"]}
-                columns={Columns({ userInfo, handleSave, openReviewRecord })}
+                columns={Columns({ userInfo, handleSave, openReviewRecord, openDetailDialog })}
             />
             <Dialog
                 title={currentRecord?.title}

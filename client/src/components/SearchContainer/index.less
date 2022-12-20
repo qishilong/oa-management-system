@@ -1,12 +1,12 @@
 .filter-wrapper {
-    width: 280px;
+    width: calc(20% - 4px);
     height: 100%;
     background-color: #fff;
     margin: 2px;
     flex-shrink: 0;
     padding: 10px 20px;
     position: relative;
-    transition: 0.2s;
+    transition: all 0.2s;
 
     &.close {
         width: 0px;
@@ -28,7 +28,7 @@
     .close-tip {
         position: absolute;
         right: 0;
-        top: 50%;
+        top: calc(50% - 50px);
         width: 15px;
         background-color: #1890ff;
         height: 100px;

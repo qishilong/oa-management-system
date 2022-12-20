@@ -4,9 +4,7 @@ import iconMap from '../iconMap';
 import "./index.less"
 
 
-const SearchContainer = ({ render }) => {
-
-    const [closeStatus, setCloseStatus] = useState(false);
+const SearchContainer = ({ render, closeStatus, setCloseStatus }) => {
 
     // 清除字段
     const clearFields = () => {
@@ -20,7 +18,7 @@ const SearchContainer = ({ render }) => {
                 <span className='c-r' onClick={clearFields}>{iconMap.reload}</span>
             </div>
             <div className={classnames('filter-form-wrapper', { opacity: closeStatus })}>
-                {render}
+                {render()}
             </div>
             <div className="close-tip" onClick={() => setCloseStatus(!closeStatus)}>
                 {closeStatus ? iconMap.right : iconMap.left}

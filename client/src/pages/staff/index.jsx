@@ -8,6 +8,7 @@ import TableList from './components/TableList';
 const Staff = () => {
 
     const [page, setPage] = useState(1);
+    const [closeStatus, setCloseStatus] = useState(false);
 
     const dispatch = useDispatch();
     const { staffList, staffTotal } = useSelector(state => state.staff)
@@ -20,7 +21,7 @@ const Staff = () => {
 
     useEffect(() => initStaffData(page), [])
 
-    const initStaffData = (currentPage) => dispatch({
+    const initStaffData = (currentPage = page) => dispatch({
         type: "staff/_initStaffData",
         payload: { size: 10, page: currentPage }
     })
@@ -31,6 +32,7 @@ const Staff = () => {
         setPage(currentPage);
         initStaffData(currentPage);
     }
+    // console.log(closeStatus)
 
     return (
         <div className='main-content'>
@@ -43,9 +45,19 @@ const Staff = () => {
                 interfaceDelMethod={"deleteStaffs"}
             />
             {/* 左侧搜索区域 */}
-            <SearchContainer render={<FilterForm />} />
+            <SearchContainer
+                closeStatus={closeStatus}
+                setCloseStatus={setCloseStatus}
+                render={() => <FilterForm />}
+            />
             {/* 右侧表单展示 */}
-            <TableList userInfo={userInfo} staffList={staffList} loading={loading} />
+            <TableList
+                closeStatus={closeStatus}
+                userInfo={userInfo}
+                staffList={staffList}
+                loading={loading}
+                reloadPage={initStaffData}
+            />
         </div>
     )
 }

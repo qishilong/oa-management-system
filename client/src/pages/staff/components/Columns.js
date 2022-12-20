@@ -2,14 +2,31 @@ import { Tag, Image } from "antd";
 import { formatYear, dateFormat, formatBirth } from "utils/dateFormat";
 import imageError from "common/images/load_error.png"
 import { mapData } from "utils/mapData";
+import iconMap from "../../../components/iconMap";
+import { staffRules } from "utils/rules/staffRules"
 
-const Columns = ({ handleSave, userInfo, openReviewRecord }) => {
+const Columns = ({ handleSave, userInfo, openReviewRecord, openDetailDialog }) => {
 
+    // 正常可以渲染的表格内容
     const normalList = [
         {
             title: "姓名",
             dataIndex: "userName",
             editable: true,
+            render: (useName, { _id }) => {
+                return (
+                    <>
+                        <span className="user-name">{useName}</span>
+                        <span
+                            className="c-r"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                openDetailDialog(_id)
+                            }}
+                        >{iconMap.detail}</span>
+                    </>
+                )
+            }
         },
         {
             title: "联系电话",
@@ -40,6 +57,7 @@ const Columns = ({ handleSave, userInfo, openReviewRecord }) => {
 
     ];
 
+    // 只有管理员可以渲染的表格内容
     const authList = [
         {
             title: "入职时间",
@@ -174,16 +192,39 @@ const Columns = ({ handleSave, userInfo, openReviewRecord }) => {
         if (!item.editable) {
             return item // 如果不能修改，直接返回当前的渲染单元格
         }
+        // 当前的单元格诶可编辑的单元格
         return {
             ...item,
-            onCell: (record) => ({
+            onCell: (record) => {
                 // console.log(record)
-                record,
-                dataIndex: item.dataIndex,
-                handleSave: handleSave,
-                title: item.title,
-                editable: item.editable
-            })
+
+                // 创建一个规定编辑表单类型的属性type
+                let type = "";
+                switch (item.dataIndex) {
+                    case "onboardingTime":
+                        type = "dateNode";
+                        break;
+                    case "gender":
+                    case "education":
+                    case "marriage":
+                        type = "selectNode";
+                        break;
+                    default:
+                        type = "inputNode";
+                        break;
+                }
+
+                return {
+                    type,
+                    record,
+                    dataIndex: item.dataIndex,
+                    handleSave: handleSave,
+                    title: item.title,
+                    editable: item.editable,
+                    rules: staffRules[item.dataIndex]
+                }
+
+            }
         }
     })
     return renderColumnsListData

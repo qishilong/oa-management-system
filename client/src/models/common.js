@@ -4,9 +4,11 @@ export default {
     namespace: "common",
     state: {
         collapse: false,
+        isShowDetailDialog: false
     },
     reducers: {
-        changeCollapse: (state, { payload }) => ({ ...state, ...payload })
+        changeCollapse: (state, { payload }) => ({ ...state, ...payload }),
+        changeIsShowDetailDialog: (state, { payload }) => ({ ...state, ...payload })
     },
     effects: {
         *queryLoginStatus({ payload }, { put, call }) {
