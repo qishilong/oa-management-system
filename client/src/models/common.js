@@ -41,7 +41,7 @@ export default {
                     // 用户满足条件，进行登录信息的检测
                     yield* checkIsLogin();
                     const { data: routeList } = yield call($http.getRouteList);
-                    sessionStorage.setItem("routeList", routeList);
+                    sessionStorage.setItem("routeList", JSON.stringify(routeList || []));
                 }
             } else if (
                 sessionStorage.getItem("token") &&

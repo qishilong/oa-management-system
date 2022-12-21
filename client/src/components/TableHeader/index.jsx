@@ -5,7 +5,7 @@ import "./index.less"
 import { useSelector } from "umi";
 import classNames from "classNames"
 
-const TableHeader = ({ page, size, total, changeCurrentPage }) => {
+const TableHeader = ({ page, size, total, changeCurrentPage, interfaceDelMethod }) => {
 
     const { collapse } = useSelector(state => state.common)
 
