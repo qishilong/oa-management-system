@@ -6,7 +6,7 @@ export default {
         staffList: [],
         staffTotal: 0,
         // staffDetail: null
-        // 服务器端内部错误，所以暂时不发送请求，将数据暂时定死处理
+        // 因为数据问题，在进行$http.getStaffDetail请求时，会导致服务器内部错误，所以先暂时不发送请求，将数据固定
         staffDetail: {    // 当前登录用户为管理员或普通员工查看自己的详细信息是返回的内容
             "identity": 0,// 身份权限
             "level": [ // 职级
@@ -44,10 +44,10 @@ export default {
         },
         // 获取员工详情
         *_getStaffDetail({ payload }, { put, call }) {
-            // 服务器端内部错误，所以暂时不发送请求，将数据暂时定死处理
-
             // console.log(payload)
             // console.log($http.getStaffDetail)
+
+            // 因为数据问题，在进行$http.getStaffDetail请求时，会导致服务器内部错误，所以先暂时不发送请求，将数据固定
             // const { data, msg } = yield call($http.getStaffDetail, payload);
             // console.log(data, msg, 1111)
             // yield put({ type: "saveStaffDetail", payload: { staffDetail: data || {} } });

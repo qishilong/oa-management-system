@@ -18,13 +18,10 @@ const judgeOkState = async (res) => {
     const cloneRes = await res.clone().json();
     if (cloneRes.code !== 0) {
         message.error(`${cloneRes.msg}${cloneRes.code}`);
-        /**
-         * 因为服务器内部错误，有些接口会出现请求错误，所以暂时先不做跳转和清除数据
-         */
         //- 跳转到登录界面
-        // history.replace('/users/login');
+        history.replace('/users/login');
         //- 清空本地保存的数据
-        // sessionStorage.clear();
+        sessionStorage.clear();
     }
     return res;
 };
