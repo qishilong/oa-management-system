@@ -18,10 +18,10 @@ const judgeOkState = async (res) => {
     const cloneRes = await res.clone().json();
     if (cloneRes.code !== 0) {
         message.error(`${cloneRes.msg}${cloneRes.code}`);
-        //- 跳转到登录界面
-        history.replace('/users/login');
-        //- 清空本地保存的数据
-        sessionStorage.clear();
+        // //- 跳转到登录界面
+        // history.replace('/users/login');
+        // //- 清空本地保存的数据
+        // sessionStorage.clear();
     }
     return res;
 };

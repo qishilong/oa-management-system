@@ -1,6 +1,5 @@
 .filter-wrapper {
   width: calc(20% - 4px);
-  height: 100%;
   background-color: #fff;
   margin: 2px;
   flex-shrink: 0;

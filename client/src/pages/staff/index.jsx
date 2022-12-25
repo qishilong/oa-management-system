@@ -67,7 +67,10 @@ const Staff = () => {
                 title={staffDetail?.userName}
                 interfaceName="destroyStaff"
                 reloadList={() => setPage(1) && initStaffData()}
-                render={() => <DetailForm />}
+                render={() => <DetailForm
+                    staffDetail={staffDetail}
+                    _initStaffData={initStaffData}
+                />}
             />
         </div>
     )

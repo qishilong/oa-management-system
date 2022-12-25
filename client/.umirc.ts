@@ -16,7 +16,8 @@ export default defineConfig( {
     alias: {
         api: resolve( __dirname, './src/services/' ),
         components: resolve( __dirname, './src/components' ),
-        common: resolve( __dirname, './src/common' ),
+        common: resolve(__dirname, './src/common'),
+        staticList:resolve(__dirname, "./src/staticList"),
         // config: resolve(__dirname, './src/utils/config'),
         // themes: resolve(__dirname, './src/themes'),
         utils: resolve( __dirname, './src/utils' ),
