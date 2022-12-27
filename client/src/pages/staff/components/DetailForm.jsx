@@ -1,11 +1,12 @@
 import React from 'react'
 import formList from "../../../staticList/staticList"
 import { Form, Input, message, Select, DatePicker, Row, Col } from "antd";
-import DropPopover from '../../../components/DropPopover/DropPopover';
+import DropPopover from '../../../components/DropPopover';
 import moment from "moment";
 import { staffRules } from '../../../utils/rules/staffRules';
 import $http from "api";
 import { useDispatch } from 'umi';
+import Upload from '../../../components/Upload';
 
 const { Option } = Select;
 
@@ -13,11 +14,15 @@ const { Option } = Select;
 const DetailForm = ({ staffDetail, _initStaffData }) => {
     const [form] = Form.useForm();
     const dispatch = useDispatch();
-    console.log(staffDetail)
     // 提交表单之前的验证
     const checkBeforeSubmitForm = async (item) => {
         const newVal = form.getFieldValue(item.itemName);
         const oldVal = staffDetail[item.itemName];
+
+        if (typeof oldVal === "Object") {
+            oldVal = oldVal._id
+        }
+
         try {
             // 判断输入框中新旧值是否相同
             if (newVal === oldVal) return;
@@ -60,7 +65,10 @@ const DetailForm = ({ staffDetail, _initStaffData }) => {
             placeholder={item.placeholderVal}
             onChange={() => checkBeforeSubmitForm(item)}
         >
-            {item.optionData.map((value, index) => <Option key={index} value={value}>{value}</Option>)}
+            {item.optionData.map((value, index) => <Option
+                key={index}
+                value={index}
+            >{value}</Option>)}
         </Select>,
         date: (item) => <DatePicker
             style={{ width: "100%" }}
@@ -70,9 +78,26 @@ const DetailForm = ({ staffDetail, _initStaffData }) => {
         popover: (item) => <Input
             placeholder={item.placeholderVal}
             readOnly={true}
-            addonAfter={<DropPopover />}
+            addonAfter={<DropPopover
+                placeholderVal={item.placeholderVal}
+                interfaceName={item.interfaceName}
+                searchType={item.itemName}
+                getSelectItem={(res) => {
+                    form.setFieldsValue({
+                        [item.itemName]: res[item.itemName],
+                        [item.itemName.split("N")[0]]: res._id
+                    })
+                    // console.log(item.itemName, item.itemName.split("N"), [item.itemName.split("N")[0]], res._id)
+                    // console.log(res)
+                    const reqData = JSON.parse(JSON.stringify(item));
+                    reqData.itemName = reqData.itemName.split("N")[0];
+                    checkBeforeSubmitForm(reqData);
+                }} />}
         />,
-        upload: (item) => <Input placeholder='hello world' />
+        upload: (item) => <Upload
+            avatar={staffDetail.avatar}
+            getNewAvatar={(newAvatar) => _updateStaff("avatar", newAvatar)}
+        />
     }
 
     formData["input"]
@@ -84,11 +109,13 @@ const DetailForm = ({ staffDetail, _initStaffData }) => {
             form={form}
             initialValues={{
                 ...staffDetail,
-                onboardingTime: moment(staffDetail.onboardingTime)
+                onboardingTime: moment(staffDetail.onboardingTime),
+                departmentName: staffDetail.department?.departmentName,
+                levelName: staffDetail.level?.levelName
             }}
         >
             {formList.map((arr, arrIndex) => {
-                return (<Row key={arrIndex}>
+                return (<Row key={arrIndex} justify={"space-between"}>
                     {arr.map((item, itemIndex) => {
                         return <Col span={11} key={itemIndex}>
                             <Form.Item

@@ -53,7 +53,7 @@ const DrawerComponent = ({ title, interfaceName, _id, render, reloadList }) => {
         <Drawer
             title={titleNode}
             placement="right"
-            width={600}
+            width={800}
             open={isShowDetailDialog}
             extra={extra}
             closable={false}

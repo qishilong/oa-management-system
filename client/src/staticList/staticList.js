@@ -1,4 +1,4 @@
-import { mapData } from "utils/mapData";
+import { mapData } from "../utils/mapData";
 
 export default [
     [
@@ -78,7 +78,7 @@ export default [
             itemName: 'departmentName',
             placeholderVal: '请选择部门',
             labelTxt: '部门',
-            url: 'getDepartmentList',
+            interfaceName: 'getDepartmentList',
         },
         {
             renderType: 'popover',
@@ -86,7 +86,7 @@ export default [
             placeholderVal: '请选择职级',
             labelTxt: '职级',
             optionName: 'levelName',
-            url: 'getLevelList',
+            interfaceName: 'getLevelList',
         },
     ],
     [

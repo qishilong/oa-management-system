@@ -486,7 +486,7 @@ export default {
             // const { data, msg } = yield call($http.getStaffDetail, payload);
             // console.log(data, msg, 1111)
             // yield put({ type: "saveStaffDetail", payload: { staffDetail: data || {} } });
-            console.log(staffDetailData, {})
+            // console.log(staffDetailData, {})
             yield put({
                 type: "saveStaffDetail",
                 payload: {
