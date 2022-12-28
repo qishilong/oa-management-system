@@ -5,15 +5,14 @@ import { EditableCell, EditableRow } from '../../../components/Editable';
 import Dialog from '../../../components/Dialog';
 import RenderType from './RecordTable';
 import classnames from "classnames"
-import { useDispatch } from 'umi';
+import { useDispatch, useSelector } from 'umi';
 import $http from "api";
 
 const TableList = ({ userInfo, staffList, loading, closeStatus, reloadPage }) => {
     const [currentRecord, setCurrentRecord] = useState(null);
     const [dialogStatus, setDialogStatus] = useState(false);
-
+    // const { ids } = useSelector(state => state.common)
     const dispatch = useDispatch();
-
     // 修改之后的保存事件
     const handleSave = async (obj) => {
         if (obj.type === "mobile") {
@@ -38,6 +37,11 @@ const TableList = ({ userInfo, staffList, loading, closeStatus, reloadPage }) =>
     // 打开员工详情界面
     const openDetailDialog = (_id) => dispatch({ type: "staff/_getStaffDetail", payload: { _id } })
 
+    // 单选全选按钮触发函数
+    const handleSelectFn = (ids) => {
+        dispatch({ type: "common/saveSelectIds", payload: { ids: ids } })
+    }
+
     return (
         <div>
             <Table
@@ -60,15 +64,21 @@ const TableList = ({ userInfo, staffList, loading, closeStatus, reloadPage }) =>
                 }}
                 pagination={false}
                 loading={loading.effects["staff/_initStaffData"]}
-                columns={Columns({ userInfo, handleSave, openReviewRecord, openDetailDialog })}
+                columns={Columns({
+                    userInfo,
+                    handleSave,
+                    openReviewRecord,
+                    openDetailDialog
+                })}
+                rowSelection={{ onChange: handleSelectFn }}
             />
-            <Dialog
+            < Dialog
                 title={currentRecord?.title}
                 dialogStatus={dialogStatus}
                 setDialogStatus={setDialogStatus}
                 render={() => <RenderType {...currentRecord} />}
             />
-        </div>
+        </div >
     )
 }
 

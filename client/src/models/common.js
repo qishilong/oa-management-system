@@ -4,11 +4,17 @@ export default {
     namespace: "common",
     state: {
         collapse: false,
-        isShowDetailDialog: false
+        isShowDetailDialog: false,
+        isClearForm: false,
+        ids: []
     },
     reducers: {
         changeCollapse: (state, { payload }) => ({ ...state, ...payload }),
-        changeIsShowDetailDialog: (state, { payload }) => ({ ...state, ...payload })
+        changeIsShowDetailDialog: (state, { payload }) => ({ ...state, ...payload }),
+        // 清空搜索表单
+        clearSearchForm: (state, { payload }) => ({ ...state, ...payload }),
+        // 保存需要删除的ids集合
+        saveSelectIds: (state, { payload }) => ({ ...state, ...payload })
     },
     effects: {
         *queryLoginStatus({ payload }, { put, call }) {

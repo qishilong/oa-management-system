@@ -7,6 +7,8 @@ import TableList from './components/TableList';
 import DetailForm from './components/DetailForm';
 import DrawerComponent from '../../components/Drawer';
 import useCommon from '../../hook/useCommon';
+import AddForm from './components/AddForm';
+import Dialog from '../../components/Dialog';
 
 const Staff = () => {
     const [closeStatus, setCloseStatus] = useState(false);
@@ -15,17 +17,13 @@ const Staff = () => {
     const { userInfo } = useSelector(state => state.user)
     const loading = useSelector(state => state.loading)
     const [page, setPage] = useCommon()
-    // const data = useSelector(state => state)
-    // console.log(data)
-    // console.log(staffTotal)
-
-    // console.log(page, 1111)
+    const [dialogStatus, setDialogStatus] = useState(false)
 
     useEffect(() => initStaffData(), [])
 
-    const initStaffData = () => dispatch({
+    const initStaffData = (queryData) => dispatch({
         type: "staff/_initStaffData",
-        payload: { size: 3, page: page.current }
+        payload: { size: 3, page: page.current, ...queryData }
     })
 
     // 改变当前页码的函数
@@ -37,6 +35,9 @@ const Staff = () => {
     }
     // console.log(closeStatus)
 
+    // 根据列表条件进行渲染展示
+    const searchResult = (queryData) => initStaffData(queryData);
+
     return (
         <div className='main-content'>
             {/* 头部公共区域 */}
@@ -46,12 +47,15 @@ const Staff = () => {
                 changeCurrentPage={changeCurrentPage}
                 total={staffTotal}
                 interfaceDelMethod={"destroyStaff"}
+                openAddDialog={() => setDialogStatus(prev => prev = true)}
             />
             {/* 左侧搜索区域 */}
             <SearchContainer
                 closeStatus={closeStatus}
                 setCloseStatus={setCloseStatus}
-                render={() => <FilterForm />}
+                render={() => <FilterForm
+                    reload={(data) => setPage(1) && searchResult(data)}
+                />}
             />
             {/* 右侧表单展示 */}
             <TableList
@@ -71,6 +75,17 @@ const Staff = () => {
                     staffDetail={staffDetail}
                     _initStaffData={initStaffData}
                 />}
+            />
+            {/* 新增员工组件 */}
+            <Dialog
+                title="新增员工"
+                dialogStatus={dialogStatus}
+                render={() => <AddForm
+                    setDialogStatus={setDialogStatus}
+                    reloadList={() => setPage(1) && initStaffData()}
+                />}
+                setDialogStatus={setDialogStatus}
+                width={800}
             />
         </div>
     )
