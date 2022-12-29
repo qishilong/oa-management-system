@@ -6,3 +6,6 @@ export const getDepartmentList = (params) => {
     delete params.queryData;
     return ajax.get("/department", { ...params, ...reqParams })
 }
+
+// 获取部门详情
+export const getDepartmentDetail = (params) => ajax.get(`/department/${params._id}`)

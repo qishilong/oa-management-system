@@ -132,3 +132,23 @@
 #root .c-r {
   cursor: pointer;
 }
+#root .department-container {
+  margin: 20px;
+  min-height: 100%;
+  background-color: #fff;
+  width: 100%;
+}
+#root .department-container .create-department-btn {
+  position: fixed;
+  top: 23px;
+  left: 260px;
+}
+#root .department-container .create-department-btn.small {
+  left: 140px;
+}
+.department-modal-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+}
