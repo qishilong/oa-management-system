@@ -26,8 +26,8 @@ const DropPopover = ({ placeholderVal, interfaceName, searchType, getSelectItem 
             size: 5,
             queryData
         })
-        setTotal(prev => prev = (data.total || data.staffTotal));
-        setList(prev => prev = (data.list || data.staffList));
+        setTotal(prev => prev = data.total || data.staffTotal);
+        setList(prev => prev = data.list || data.staffList);
     }
     // 搜索函数
     const onSearch = (val) => {
