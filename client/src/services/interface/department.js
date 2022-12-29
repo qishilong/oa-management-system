@@ -9,3 +9,6 @@ export const getDepartmentList = (params) => {
 
 // 获取部门详情
 export const getDepartmentDetail = (params) => ajax.get(`/department/${params._id}`)
+
+// 新增部门
+export const addDepartment = (params) => ajax.post("/department", params)

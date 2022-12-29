@@ -1,4 +1,5 @@
 import $http from "api"
+import { message } from "antd"
 
 export default {
     namespace: "department",
@@ -27,6 +28,16 @@ export default {
             yield put({
                 type: "savaDepartmentDetail",
                 payload: { departmentDetail: data }
+            })
+        },
+        // 新增部门
+        *_addDepartment({ payload }, { call, put }) {
+            const { code, msg } = yield call($http.addDepartment, payload);
+            if (code) return message.error(msg);
+            message.success(msg);
+            yield put({
+                type: "_initDepartmentList",
+                payload: {}
             })
         }
     }

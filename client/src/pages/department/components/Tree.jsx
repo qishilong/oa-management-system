@@ -5,12 +5,12 @@ import OrgTree from "react-org-tree"
 const Tree = ({ getDepartmentDetail }) => {
     const dispatch = useDispatch();
     const departmentList = useSelector(state => JSON.parse(JSON.stringify(state.department.departmentList.filter(
-        item => item.parentLists.length
+        item => item.parentLists.length > 0
+        // item => item
     ))
     ))
 
-    // console.log(departmentList)
-
+    console.log(departmentList)
 
     useEffect(() => {
         dispatch({
@@ -30,7 +30,7 @@ const Tree = ({ getDepartmentDetail }) => {
     addProp(departmentList)
 
     const renderData = {
-        id: -1,
+        id: 0,
         label: "公司组织架构图",
         children: departmentList
     }

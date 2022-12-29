@@ -5,6 +5,7 @@ import classnames from "classnames"
 import { useSelector, useDispatch } from "umi"
 import Dialog from "../../components/Dialog"
 import Tree from "./components/Tree";
+import FormComponent from "./components/FormComponent";
 
 function Department() {
     const [modalTitle, setModalTitle] = useState("创建部门");
@@ -56,9 +57,15 @@ function Department() {
         <Dialog
             title={modalTitleComponent}
             dialogStatus={dialogStatus}
-            render={() => { }}
+            render={() =>
+                <FormComponent
+                    setDialogStatus={setDialogStatus}
+                    modalType={modalType}
+                />
+            }
             setDialogStatus={setDialogStatus}
             width={800}
+            className="department-detail-modal"
         />
     </div>;
 }

@@ -1,0 +1,80 @@
+.department-detail-modal .ant-descriptions-view table {
+  table-layout: fixed;
+}
+.department-detail-modal .department-detail-table {
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  table-layout: fixed;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td {
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td .ant-form-item {
+  margin: 0px;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td td {
+  border-right: 0;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td input {
+  border: 0;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td.column {
+  background-color: #eff3f6;
+  color: #393c3e;
+  width: 150px;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td:hover input {
+  border: 1px solid #ddd;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td.department-children {
+  padding: 15px;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td.department-children .operation {
+  margin-top: 15px;
+  display: flex;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td.department-children .operation .add,
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td.department-children .operation .delete {
+  background-color: #eff3f6;
+  margin-right: 15px;
+  padding: 5px;
+  border-radius: 3px;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td.department-children .operation .add:hover,
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td.department-children .operation .delete:hover {
+  background-color: #ccc;
+}
+.department-detail-modal .department-detail-table .department-detail-table-tbody tr td .department-leader-select .ant-select-selector {
+  border: 0;
+}
+.department-detail-modal .ant-form-item {
+  margin-bottom: 0;
+}
+.department-detail-modal .ant-input {
+  border: none;
+}
+.department-detail-modal .modal-title {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 30px;
+  align-items: center;
+}
+.department-detail-modal .modal-title .ft-b {
+  font-weight: bold;
+  color: #888;
+}
+.department-detail-modal .modal-title .delete-icon {
+  color: red;
+  cursor: pointer;
+}
+.department-detail-modal .border-1 .ant-input-group {
+  border: 1px solid #ccc;
+}
+.department-detail-modal .mt-20 {
+  margin-top: 20px;
+}

@@ -1,0 +1,114 @@
+.department-detail-modal {
+    .ant-descriptions-view {
+        table {
+            table-layout: fixed;
+        }
+    }
+
+    .department-detail-table {
+        width: 100%;
+        border-top: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        table-layout: fixed;
+
+        .department-detail-table-tbody {
+            tr {
+                td {
+                    height: 50px;
+                    box-sizing: border-box;
+                    padding: 0 10px;
+                    border-bottom: 1px solid #ddd;
+                    border-right: 1px solid #ddd;
+
+                    .ant-form-item {
+                        margin: 0px;
+                    }
+
+                    td {
+                        border-right: 0;
+                    }
+
+                    input {
+                        border: 0;
+                    }
+
+                    &.column {
+                        background-color: #eff3f6;
+                        color: #393c3e;
+                        width: 150px;
+                    }
+
+                    &:hover {
+                        input {
+                            border: 1px solid #ddd;
+                        }
+                    }
+
+                    &.department-children {
+                        padding: 15px;
+
+                        .operation {
+                            margin-top: 15px;
+                            display: flex;
+
+                            .add,
+                            .delete {
+                                background-color: #eff3f6;
+                                margin-right: 15px;
+                                padding: 5px;
+                                border-radius: 3px;
+
+                                &:hover {
+                                    background-color: #ccc;
+                                }
+                            }
+                        }
+                    }
+
+                    .department-leader-select {
+                        .ant-select-selector {
+                            border: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .ant-form-item {
+        margin-bottom: 0;
+    }
+
+    .ant-input {
+        border: none;
+    }
+
+    .modal-title {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 30px;
+        align-items: center;
+
+        .ft-b {
+            font-weight: bold;
+            color: #888;
+        }
+
+        .delete-icon {
+            color: red;
+            cursor: pointer;
+        }
+    }
+
+    .border-1 {
+        .ant-input-group {
+            border: 1px solid #ccc;
+        }
+    }
+
+    .footer-btn {}
+
+    .mt-20 {
+        margin-top: 20px;
+    }
+}
