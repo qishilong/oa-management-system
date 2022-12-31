@@ -1,7 +1,14 @@
 import React from 'react'
 import { Modal } from 'antd'
 
-const Dialog = ({ title, dialogStatus, render, setDialogStatus, width = 600 }) => {
+const Dialog = ({
+    title,
+    dialogStatus,
+    render,
+    setDialogStatus,
+    width = 600,
+    className = ""
+}) => {
     // console.log(dialogStatus)
     return (
         <Modal
@@ -11,6 +18,7 @@ const Dialog = ({ title, dialogStatus, render, setDialogStatus, width = 600 }) =
             centered={true}
             open={dialogStatus}
             footer={null}
+            className={className}
             onCancel={() => setDialogStatus(prev => prev = false)}
         >
             {render()}

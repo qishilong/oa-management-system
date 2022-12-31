@@ -5,8 +5,8 @@ import AddChildModal from './AddChildModal'
 
 const { Column } = Table
 
-const ChildDepartment = ({ childrenList, pushOrUpdateList }) => {
-    const [deleteIds, setDeleteIds] = useState([]);
+const ChildDepartment = ({ childrenList, pushOrUpdateList, departmentDetail }) => {
+    const [delList, setDelList] = useState([]);
     const [showDeleteModal, setDeleteModal] = useState(false)
     const [showChildModal, setShowChildModal] = useState(false)
 
@@ -17,7 +17,16 @@ const ChildDepartment = ({ childrenList, pushOrUpdateList }) => {
 
     // 删除子部门事件
     const deleteDepartment = () => {
-        console.log("deleteDepartment")
+        // console.log(departmentDetail, delList, 111)
+        setDeleteModal(prev => prev = false)
+        if (departmentDetail) {
+            pushOrUpdateList({ list: delList, type: "del" })
+        } else {
+            const ids = delList.map((item) => item._id)
+            const tempArr = childrenList.filter(item => !ids.includes(item._id))
+            pushOrUpdateList({ type: "add", list: tempArr })
+        }
+        // console.log("deleteDepartment")
     }
 
     return (
@@ -25,7 +34,7 @@ const ChildDepartment = ({ childrenList, pushOrUpdateList }) => {
             <Table
                 dataSource={childrenList}
                 rowSelection={{
-                    onChange: (ids) => setDeleteIds(prev => prev = ids)
+                    onChange: (ids, record) => setDelList(prev => prev = record)
                 }}
                 pagination={false}
                 rowKey={record => record._id}
@@ -45,8 +54,8 @@ const ChildDepartment = ({ childrenList, pushOrUpdateList }) => {
                 </Button>
                 <Button
                     icon={iconMap.del}
-                    onClick={() => setShowChildModal(prev => prev = true)}
-                    disabled={!deleteIds.length}
+                    onClick={() => setDeleteModal(prev => prev = true)}
+                    disabled={!delList.length}
                 >
                     解除子部门关联
                 </Button>
@@ -56,12 +65,13 @@ const ChildDepartment = ({ childrenList, pushOrUpdateList }) => {
                 showChildModal={showChildModal}
                 setShowChildModal={setShowChildModal}
                 pushOrUpdateList={pushOrUpdateList}
+                existsList={childrenList}
             />
             {/* 接触子部门弹窗 */}
             <Modal
                 title="提示"
                 open={showDeleteModal}
-                onOk={() => deleteDepartment}
+                onOk={deleteDepartment}
                 onCancel={() => setDeleteModal(prev => prev = false)}
             >
                 确定要删除选定的部门吗？

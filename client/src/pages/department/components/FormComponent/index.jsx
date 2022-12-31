@@ -2,16 +2,18 @@ import { useState } from 'react'
 import { Form, Input, Button, Row, Descriptions } from "antd"
 import DropPopover from '../../../../components/DropPopover'
 import ChildDepartment from '../ChildDepartment'
-import { useDispatch } from 'umi'
-import "./index.less"
+import { useDispatch, useSelector } from 'umi'
 import { departmentRules } from '../../../../utils/rules'
+import StaffTable from '../StaffTable'
+import "./index.less"
 
 const FormComponent = ({ setDialogStatus, modalType }) => {
     const dispatch = useDispatch();
     const [childrenList, setChildrenList] = useState([])
 
     const [form] = Form.useForm()
-    // console.log(setDialogStatus, modalType)
+    const { departmentDetail } = useSelector(state => state.department);
+    // console.log(form.getFieldInstance(((...props) => console.log(...props))))
 
     // 新增表单提交
     const _onFinish = (data) => {
@@ -27,18 +29,53 @@ const FormComponent = ({ setDialogStatus, modalType }) => {
             }
         })
         setDialogStatus(prev => prev = false)
-        console.log(data)
+        // console.log(data)
     }
 
     // 新增子部门或修改部门
-    const pushOrUpdateList = (data) => {
-        const childrenIds = data.list.map((item) => item._id)
-        setChildrenList(prev => prev = data.list)
+    const pushOrUpdateList = ({ list, type }) => {
+        const childrenIds = list.map((item) => item._id)
+        if (type === "update" || type === "del") {
+            const isDelete = type === "del";
+            updateDepartment({ type: "children", updateVal: childrenIds, isDelete })
+        } else {
+            console.log(list);
+            setChildrenList(prev => prev = list);
+            form.setFieldsValue({ children: childrenIds })
+        }
+        setChildrenList(prev => prev = list)
         form.setFieldsValue({ children: childrenIds })
     }
 
+    // 修改部门信息
+    const updateDepartment = ({ type, updateVal, isDelete = false }) => {
+        if (!updateVal) {
+            updateVal = form.getFieldValue(type);
+            // 判断新旧值是否相等
+            if (updateVal === departmentDetail[type]) return
+        }
+        dispatch({
+            type: "department/_updateDepartmentDetail",
+            payload: {
+                _id: departmentDetail._id,
+                type,
+                updateVal,
+                isDelete
+            }
+        })
+    }
+    // console.log(departmentDetail)
+
     return (
-        <Form form={form} onFinish={_onFinish}>
+        <Form
+            form={form}
+            onFinish={_onFinish}
+            initialValues={{
+                departmentName: departmentDetail?.departmentName,
+                remark: departmentDetail?.remark,
+                departmentLeaderName: departmentDetail?.departmentLeader?.userName
+            }}
+        >
             <Descriptions column={1} bordered={true} labelStyle={{ width: "150px" }}>
                 <Descriptions.Item label="部门名称">
                     <Form.Item
@@ -48,6 +85,8 @@ const FormComponent = ({ setDialogStatus, modalType }) => {
                         <Input onBlur={
                             () => {
                                 // todo
+                                modalType === "update" &&
+                                    updateDepartment({ type: "departmentName" })
                             }
                         } />
                     </Form.Item>
@@ -57,14 +96,17 @@ const FormComponent = ({ setDialogStatus, modalType }) => {
                         <Input
                             onBlur={() => {
                                 // todo
+                                modalType === "update" &&
+                                    updateDepartment({ type: "remark" })
                             }}
                         />
                     </Form.Item>
                 </Descriptions.Item>
                 <Descriptions.Item label="子部门">
                     <ChildDepartment
-                        childrenList={childrenList}
+                        childrenList={modalType === "update" ? departmentDetail?.children : childrenList}
                         pushOrUpdateList={pushOrUpdateList}
+                        departmentDetail={departmentDetail}
                     />
                 </Descriptions.Item>
                 <Descriptions.Item label="部门负责人">
@@ -86,12 +128,16 @@ const FormComponent = ({ setDialogStatus, modalType }) => {
                                             departmentLeaderName: item.userName,
                                             departmentLeader: item._id,
                                         })
+                                        modalType === "update" && updateDepartment({ type: "departmentLeader" })
                                     }}
                                 />
                             }
                         />
                     </Form.Item>
                 </Descriptions.Item>
+                {modalType === "update" && <Descriptions.Item label="部门员工">
+                    <StaffTable staffList={departmentDetail.staffList} />
+                </Descriptions.Item>}
             </Descriptions>
             {modalType === "add" && <Form.Item>
                 <Row justify="end">

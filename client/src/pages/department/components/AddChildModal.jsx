@@ -3,12 +3,21 @@ import { Modal, Table } from "antd";
 import { useSelector } from 'umi';
 const { Column } = Table
 
-const AddChildModal = ({ showChildModal, setShowChildModal, pushOrUpdateList }) => {
+const AddChildModal = ({
+    showChildModal,
+    setShowChildModal,
+    pushOrUpdateList,
+    existsList = []
+}) => {
     const [childrenList, setChildrenList] = useState([])
     const departmentList = useSelector(state =>
         state.department.departmentList.filter(
-            item => item.parentLists.length > 0
+            item => !item.parentLists.length &&
+                departmentDetail?._id !== item._id &&
+                !existsList.map(item => item._id).
+                    includes(item._id)
         ))
+    const { departmentDetail } = useSelector(state => state.department)
 
     // console.log(departmentList)
 
@@ -17,8 +26,11 @@ const AddChildModal = ({ showChildModal, setShowChildModal, pushOrUpdateList }) 
 
     // 新增子部门操作
     const addChildList = () => {
-        const sendData = { list: childrenList, type: "add" };
-        pushOrUpdateList(sendData);
+        if (departmentDetail) {
+            pushOrUpdateList({ list: childrenList, type: "update" })
+        } else {
+            pushOrUpdateList({ list: childrenList.concat(existsList), type: "add" })
+        }
         setShowChildModal(prev => prev = false)
     }
 

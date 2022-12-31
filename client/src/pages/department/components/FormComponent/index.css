@@ -56,7 +56,7 @@
   margin-bottom: 0;
 }
 .department-detail-modal .ant-input {
-  border: none;
+  border: 1px solid #d9d9d9;
 }
 .department-detail-modal .modal-title {
   display: flex;
@@ -71,9 +71,6 @@
 .department-detail-modal .modal-title .delete-icon {
   color: red;
   cursor: pointer;
-}
-.department-detail-modal .border-1 .ant-input-group {
-  border: 1px solid #ccc;
 }
 .department-detail-modal .mt-20 {
   margin-top: 20px;

@@ -26,6 +26,7 @@ import {
     CopyOutlined,
     ApiOutlined,
     CloseCircleOutlined,
+    ExclamationCircleOutlined
 } from '@ant-design/icons';
 
 export default {
@@ -56,4 +57,5 @@ export default {
     right: <CaretRightOutlined />,
     detail: <FormOutlined />,
     copy: <CopyOutlined />,
+    tip: <ExclamationCircleOutlined />
 };

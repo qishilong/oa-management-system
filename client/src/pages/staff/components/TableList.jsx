@@ -43,7 +43,7 @@ const TableList = ({ userInfo, staffList, loading, closeStatus, reloadPage }) =>
     }
 
     return (
-        <div>
+        <>
             <Table
                 className={classnames({ closeSearch: closeStatus })}
                 components={
@@ -72,13 +72,13 @@ const TableList = ({ userInfo, staffList, loading, closeStatus, reloadPage }) =>
                 })}
                 rowSelection={{ onChange: handleSelectFn }}
             />
-            < Dialog
+            <Dialog
                 title={currentRecord?.title}
                 dialogStatus={dialogStatus}
                 setDialogStatus={setDialogStatus}
                 render={() => <RenderType {...currentRecord} />}
             />
-        </div >
+        </>
     )
 }
 
