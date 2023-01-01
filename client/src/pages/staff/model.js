@@ -1,6 +1,6 @@
 import $http from "api"
 
-const staffDetailData = {
+let staffDetailData = {
     "617661370a362d7d382a21b7": {
         "identity": 0,
         "_id": "617661370a362d7d382a21b7",
@@ -462,7 +462,7 @@ export default {
         staffList: [],
         staffTotal: 0,
         // staffDetail: null
-        // 因为数据问题，在进行$http.getStaffDetail请求时，会导致服务器内部错误，所以先暂时不发送请求，将数据固定
+        // 因为接口问题，在进行$http.getStaffDetail请求时，会导致服务器内部错误，所以先暂时不发送请求，将数据固定
         staffDetail: null
     },
     reducers: {
@@ -482,7 +482,7 @@ export default {
             // console.log(payload)
             // console.log($http.getStaffDetail)
 
-            // 因为数据问题，在进行$http.getStaffDetail请求时，会导致服务器内部错误，所以先暂时不发送请求，将数据固定
+            // 因为接口问题，在进行$http.getStaffDetail请求时，会导致服务器内部错误，所以先暂时不发送请求，将数据固定
             // const { data, msg } = yield call($http.getStaffDetail, payload);
             // console.log(data, msg, 1111)
             // yield put({ type: "saveStaffDetail", payload: { staffDetail: data || {} } });

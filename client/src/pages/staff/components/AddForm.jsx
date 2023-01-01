@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Select, Button, DatePicker, Row, Col, message } from 'antd';
-import formList from "../../../staticList/staticList"
+import formList from "../../../staticList/staticStaffList"
 import UploadComponent from '../../../components/Upload';
 import DropPopover from '../../../components/DropPopover';
 import { staffRules } from '../../../utils/rules/staffRules';
@@ -90,7 +90,6 @@ const AddForm = ({ setDialogStatus, reloadList }) => {
                     </Button>
                 </Form.Item>
             </Col>
-            {/* {11111111} */}
         </Form>
     )
 }

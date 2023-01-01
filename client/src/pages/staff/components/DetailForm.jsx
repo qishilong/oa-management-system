@@ -1,5 +1,5 @@
 import React from 'react'
-import formList from "../../../staticList/staticList"
+import formList from "../../../staticList/staticStaffList"
 import { Form, Input, message, Select, DatePicker, Row, Col } from "antd";
 import DropPopover from '../../../components/DropPopover';
 import moment from "moment";

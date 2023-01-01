@@ -75,6 +75,7 @@ const Staff = () => {
                     staffDetail={staffDetail}
                     _initStaffData={initStaffData}
                 />}
+                type={"staff"}
             />
             {/* 新增员工组件 */}
             <Dialog

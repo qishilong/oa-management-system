@@ -5,9 +5,10 @@ import iconMap from '../iconMap';
 import $http from "api"
 import "./index.less"
 
-const DrawerComponent = ({ title, interfaceName, _id, render, reloadList }) => {
+const DrawerComponent = ({ title, interfaceName, _id, render, reloadList, type }) => {
 
     const { isShowDetailDialog } = useSelector(state => state.common)
+    const { userInfo } = useSelector(state => state.user)
     const dispatch = useDispatch();
 
     // 打开删除的对话框
@@ -21,7 +22,7 @@ const DrawerComponent = ({ title, interfaceName, _id, render, reloadList }) => {
 
     // 删除指定的列表项（详情展示的这一项数据）
     const _deleteItem = async () => {
-        const { code, msg } = await $http[interfaceName]({ ids: [_id] })
+        const { code, msg } = await $http[interfaceName](type === "staff" ? { ids: [_id] } : { _id })
         if (code) return;
         message.success(msg);
         closeModalDialog();
@@ -42,7 +43,7 @@ const DrawerComponent = ({ title, interfaceName, _id, render, reloadList }) => {
 
     const extra = (
         <div className='icon-wrapper'>
-            <span className="icon" onClick={openModalDialog}>{iconMap.del}</span>
+            {userInfo.identity === 1 && <span className="icon" onClick={openModalDialog}>{iconMap.del}</span>}
             <span className="line"></span>
             <span className="icon" onClick={closeModalDialog}>{iconMap.close}</span>
         </div>
