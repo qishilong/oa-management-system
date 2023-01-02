@@ -18,7 +18,7 @@ function Assessment() {
     const [page, setPage] = useCommon()
     const dispatch = useDispatch();
     const { assessmentList, assessmentDetail, total } = useSelector(state => state.assessment)
-    console.log(total, assessmentList, assessmentDetail)
+    // console.log(total, assessmentList, assessmentDetail)
 
     useEffect(() => {
         _initAssessmentList()

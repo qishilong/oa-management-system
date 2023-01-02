@@ -50,6 +50,7 @@ const CreateAssessment = ({ setDialogStatus, reloadPage }) => {
             message.success(msg);
             reloadPage();
             setDialogStatus(prev => prev = false);
+            return
         }
         message.error(msg)
     }
