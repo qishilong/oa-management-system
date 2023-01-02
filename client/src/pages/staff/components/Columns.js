@@ -15,7 +15,7 @@ const Columns = ({ handleSave, userInfo, openReviewRecord, openDetailDialog }) =
             editable: true,
             render: (useName, { _id }) => {
                 return (
-                    <>
+                    <div className="staff-wrapper">
                         <span className="user-name">{useName}</span>
                         <span
                             className="c-r"
@@ -24,7 +24,7 @@ const Columns = ({ handleSave, userInfo, openReviewRecord, openDetailDialog }) =
                                 openDetailDialog(_id)
                             }}
                         >{iconMap.detail}</span>
-                    </>
+                    </div>
                 )
             }
         },
@@ -185,7 +185,7 @@ const Columns = ({ handleSave, userInfo, openReviewRecord, openDetailDialog }) =
         },
     ]
 
-    const renderColumnsList = userInfo.identity === 0 ? normalList : [...normalList, ...authList]
+    const renderColumnsList = userInfo.identity === 1 ? [...normalList, ...authList] : normalList
 
 
     const renderColumnsListData = renderColumnsList.map((item) => {

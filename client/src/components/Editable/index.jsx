@@ -45,7 +45,8 @@ export const EditableCell = ({
         setEditing(!editing);
         form.setFieldsValue({
             [dataIndex]: record[dataIndex],
-            onboardingTime: moment(record.onboardingTime) // 指定的时间字段的渲染操作
+            onboardingTime: moment(record.onboardingTime), // 指定的时间字段的渲染操作
+            date: moment(record.date)   // 指定的时间字段的渲染操作
         });
     };
 

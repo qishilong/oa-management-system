@@ -51,8 +51,6 @@ const Staff = () => {
             />
             {/* 左侧搜索区域 */}
             <SearchContainer
-                closeStatus={closeStatus}
-                setCloseStatus={setCloseStatus}
                 render={() => <FilterForm
                     reload={(data) => setPage(1) && searchResult(data)}
                 />}

@@ -161,3 +161,22 @@
 .department-staff-list-wrapper .ant-table-cell {
   white-space: nowrap;
 }
+.staff-wrapper {
+  min-width: 130px;
+  display: flex;
+  justify-content: space-between;
+}
+.staff-wrapper .detail-icon {
+  display: none;
+  color: #40a9ff;
+  cursor: pointer;
+}
+.staff-wrapper input {
+  margin-bottom: 0px;
+}
+.staff-wrapper:hover .detail-icon {
+  display: block;
+}
+.w-100 .ant-picker {
+  width: 100%;
+}

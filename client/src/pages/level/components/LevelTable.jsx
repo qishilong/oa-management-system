@@ -7,6 +7,7 @@ import $http from "api"
 
 const LevelTable = ({ reloadPage, levelList }) => {
     const { loading } = useSelector(state => state);
+    const { userInfo } = useSelector(state => state.user)
     const dispatch = useDispatch();
     // console.log(levelList, reloadPage)
 
@@ -48,7 +49,7 @@ const LevelTable = ({ reloadPage, levelList }) => {
             pagination={false}
             dataSource={levelList}
             rowSelection={{ onChange: selectRow }}
-            columns={Columns(handleSave, getLevelDetail)}
+            columns={Columns(handleSave, getLevelDetail, userInfo)}
         />
     )
 }

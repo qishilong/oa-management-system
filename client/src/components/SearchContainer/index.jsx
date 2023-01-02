@@ -5,8 +5,8 @@ import "./index.less"
 import { useDispatch } from "umi";
 
 
-const SearchContainer = ({ render, closeStatus, setCloseStatus }) => {
-
+const SearchContainer = ({ render }) => {
+    const [closeStatus, setCloseStatus] = useState(false)
     const dispatch = useDispatch();
 
     // 清除表单

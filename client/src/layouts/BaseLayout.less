@@ -214,3 +214,29 @@
         white-space: nowrap;
     }
 }
+
+.staff-wrapper {
+    min-width: 130px;
+    display: flex;
+    justify-content: space-between;
+
+    .detail-icon {
+        display: none;
+        color: #40a9ff;
+        cursor: pointer;
+    }
+
+    input {
+        margin-bottom: 0px;
+    }
+
+    &:hover .detail-icon {
+        display: block;
+    }
+}
+
+.w-100 {
+    .ant-picker {
+        width: 100%;
+    }
+}

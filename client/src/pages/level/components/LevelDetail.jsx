@@ -6,14 +6,14 @@ import $http from "api";
 import { levelRules } from '../../../utils/rules';
 
 const LevelDetail = ({ _initLevelList }) => {
-    const { levelList, levelDetail } = useSelector(state => state.level)
+    const { levelDetail } = useSelector(state => state.level)
     const [form] = Form.useForm()
     const dispatch = useDispatch()
-    console.log(levelList, levelDetail, 111)
+    // console.log(levelList, levelDetail, 111)
 
     // 更改前检查
     const checkBeforeUpdate = async (item) => {
-        const editData = await form.getFieldsValue([item.itemName]);
+        const editData = await form.validateFields([item.itemName]);
         if (editData[item.itemName] === levelDetail[item.itemName]) return;
         updateLevelDetail(item, editData);
     }
