@@ -1,11 +1,11 @@
 # React_OA-System
 React 项目 - OA 系统
-# 织信OA管理系统案例
+# 织信OA管理系统项目
 >管理员账户：admin <br/>
->密码：123qwe
-## 案例说明
+>管理员密码：123qwe
+## 项目说明
 
-- **案例参考demo地址：**https://app.informat.cn/app/1Z70AnoS87ver/dashboard/1Z7070AnoS9SHJA/index
+- **项目参考demo地址：**https://app.informat.cn/app/1Z70AnoS87ver/dashboard/1Z7070AnoS9SHJA/index
 
 - **接口文档地址：**http://mock.duyiedu.com/project/128/interface/api
 
@@ -19,7 +19,7 @@ React 项目 - OA 系统
 
     > 该案例为前后端分离工程，所有涉及到数据内容均在本地数据库`mongdb`内进行获取
 
-- **案例知识储备**
+- **项目知识储备**
 
     > - 该案例实现主要依赖react框架完成，在学习案例之前需掌握react相关基础知识内容
     > - 需要掌握原生JS及ES6相关API使用方法，如`async await 解构赋值、class类定义等`
@@ -319,9 +319,9 @@ React 项目 - OA 系统
 
 
 
-## 案例整体实现流程
+## 项目整体实现流程
 
-> 1. 案例基本结构搭建
+> 1. 项目基本结构搭建
 > 2. 后端接口`API`公共请求方法封装处理
 > 3. 公共组件制作
 > 4. 公共`hook`定义
