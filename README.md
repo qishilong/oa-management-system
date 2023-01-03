@@ -34,7 +34,9 @@
 
 #### 使用mongo可视化工具
 
-> 由于数据量比较大，方便查询，我们可以使用mongo可视化工具，studio3t
+> 由于数据量比较大，方便查询，我们可以使用mongo可视化工具，studio3t <br/>
+> 链接: https://pan.baidu.com/s/1p0w9eV_tQQfa8SSF6QroPw 提取码: kejh 
+--来自百度网盘超级会员v6的分享
 
 **连接本地数据**
 
