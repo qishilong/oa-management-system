@@ -1,139 +1,166 @@
+## 用户登录模块数据处理（二）
 
-
-## 用户登录模块数据处理（一）
-
-
-
-<u>mac电脑可视化工具：https://www.mongodb.com/zh-cn/products/compass</u>
-
-### 实现功能
-
-1. 根据接口文档，收集需要获取的数据内容
-2. 后端返回数据成功后，进行首页面界面跳转
-
-
-
-**涉及接口：**
-
-![image-20211101164153610](https://adminimg.hyfarsight.com/image-20211101164153610.png)
-
-*接口具体调用方法查看接口文档*
-
-*接口文档地址*：[http://mock.duyiedu.com/project/128/interface/api/285](http://mock.duyiedu.com/project/128/interface/api/285)
-
-
-
----
-
-
-
-### 用户名密码登录
-账号: admin
-密码: 123qwe
-
-> **当登录失败时，前端显示提示信息**
->
-> **登录成功后，前端进行界面跳转**
-
----
-
-
-
-### 手机验证码登录
-
-> 输入合理的手机号码，进行验证码获取操作
->
-> 后端匹配正确（**当前数据库中含有使用该手机号码的用户**）返回提示信息
->
-> 前端根据提示信息进行验证码，手机号码收集，发送后端
->
-> **登录失败，前端显示提示信息**
->
-> **登录成功，前端进行界面跳转**
-
-
-
----
-
-
-
-### 密码重置
-
-> 1. 用户输入手机号码，进行验证码接收
-> 2. 点击下一步，进行手机号码验证操作，验证成功 ，进行修改密码下一个界面跳转，验证失败，弹出提示信息
-> 3. 当密码修改成功，直接跳转登录界面，重新进行用户登录操作
-
-
-
-#### 定义用户状态管理
+### 用户状态管理
 
 - 保存全局用户信息到store对象内部
 
-  - umi中dva的使用方法
+    - umi中dva的使用方法
 
-    - 参考链接：https://umijs.org/zh-CN/plugins/plugin-dva
+        - 参考链接：https://umijs.org/zh-CN/plugins/plugin-dva
 
-    - 使用注意事项：
+        - 使用注意事项：
 
-      > - **内置 dva**，默认版本是 `^2.6.0-beta.20`，如果项目中有依赖，会优先使用项目中依赖的版本。
-      > - **约定式的 model 组织方式**，不用手动注册 model
-      > - **文件名即 namespace**，model 内如果没有声明 namespace，会以文件名作为 namespace
-      > - **内置 dva-loading**，直接 connect `loading` 字段使用即可
-      > - **支持 immer**，通过配置 `immer` 开启
+            > - **内置 dva**，默认版本是 `^2.6.0-beta.20`，如果项目中有依赖，会优先使用项目中依赖的版本。
+            > - **约定式的 model 组织方式**，不用手动注册 model
+            > - **文件名即 namespace**，model 内如果没有声明 namespace，会以文件名作为 namespace
+            > - **内置 dva-loading**，直接 connect `loading` 字段使用即可
+            > - **支持 immer**，通过配置 `immer` 开启
 
-    - 约定规则
+        - 约定规则
 
-      > 符合以下规则的文件会被认为是 model 文件，
-      >
-      > - `src/models` 下的文件
-      > - `src/pages` 下，子目录中 models 目录下的文件
-      > - `src/pages` 下，所有 model.ts 文件(不区分任何字母大小写)
+            > 符合以下规则的文件会被认为是 model 文件，
+            >
+            > - `src/models` 下的文件
+            > - `src/pages` 下，子目录中 models 目录下的文件
+            > - `src/pages` 下，所有 model.ts 文件(不区分任何字母大小写)
 
-​
+- **状态定义**
+
+    组件文件夹下或全局创建model文件夹
+
+    <img src="https://adminimg.hyfarsight.com/image-20211102211626384.png" alt="image-20211102211626384" style="zoom: 80%;margin:0" />
+
+- 组件内部进行使用
+
+    ```js
+    // 函数组件内部，在umi实例化对象内部进行useDispatch及useSelector获取
+    
+    import { useDispatch, useSelector } from 'umi';
+    ```
+
+- 根据命名空间空间获取state状态值
+
+    ```js
+     const { closeStatus } = useSelector((state) => state.common);
+    ```
+
+- **状态修改**
+
+- dispath方法进行状态修改
+
+    ```js
+    dispatch({
+          type: 'common/changeCloseStatus',
+          payload: { closeStatus: !closeStatus },
+        });
+    ```
+
+- model中进行状态修改处理
+
+    ```js
+    export default {
+      namespace: 'common',
+      state: {
+        userInfo: session.get('userProfile'),
+      },
+      reducers: {
+        //- 修改用户配置信息
+        updateUserProfile (state, { payload }) {
+          return { ...state, ...payload };
+        }
+      }
+    };
+    ```
+
+**异步处理**
+
+> 当需要处理异步数据（接口请求）的时候可以将请求状态处理放在effects对象内部进行收集，同时可获取一个全局的loadingState状态值
+>
+> 可以根据loading状态值进行loading效果添加
 
 
 
-### 实现流程
+### 保存用户登录状态同时添加loading效果
 
-- 收集用户信息（对信息内容进行验证处理）
-- 准备好信息后发送后端服务器
-  - 接口调用（创建接口请求api）
-    - 用户模块创建登录接口api
-    - 获取手机验证码接口api
-    - 重置密码接口api
-  - 前端添加loading效果
-    - 按钮loading效果
-    - 请求状态loading效果添加
-- 获取后端返回值
-  - 正确：保存获取到的用户信息到state状态管理
-  - 错误：前端提示错误信息
+1. **添加loading组件**
 
----
+    > loading组件在多个界面或模块中使用，我们需要动态添加loading的显示效果
+
+    ```js
+    import React from 'react'
+    import './Loading.less'
+    import classNames from 'classnames';
+    
+    const Loading = ({ spinning = false, part = false }) => {
+      const loadingStyleData = part ? {
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        height: '100%',
+        width: '100%',
+        transform: 'translate(-50%, -50%)',
+      } : {};
+    
+      return (
+        <div style={{ ...loadingStyleData }} className={classNames('loader', 'fullScreen', { hidden: !spinning })}>
+          <div className="wrapper">
+            <div className="inner"></div>
+            <div className="text">LOADING</div>
+          </div>
+        </div>
+      )
+    }
+    
+    export default Loading
+    
+    ```
+
+2. **模板组件内部进行loading效果的显示隐藏处理**
+
+    ```js
+     <Loading spinning={loading.effects['user/login']}></Loading>
+    ```
+
+3. **定义用户状态**
+
+    > 由于用户状态在多个组件内部会进行使用，所以我们可以将user状态存储在全局的model中，同时为了持久化对状态数据保存，可用使用session进行状态报错。
+
+    ```js
+    export default {
+      namespace: 'common',
+      state: {
+        userInfo: session.get('userProfile')
+      }
+    };
+    ```
+
+4. **获取用户信息成功后，保存用户信息到store状态，同时进行session存储**
+
+    ```js
+      effects: {
+        *login ({ payload }, { put, call, select }) {
+          const { data, msg } = yield call(userLogin, payload)
+          if (!data) {
+            message.error(msg)
+            return
+          }
+          const roteData = yield call(getRouteList);
+          //- store存储
+          session.set('userProfile', data)
+          session.set('routeList', roteData.data)
+          // - state 存储  
+          yield put({
+            type: 'common/updateUserProfile',
+            payload: { userInfo: data }
+          })
+          history.push(roteData.data[0].route)
+        }
+      }
+    ```
 
 
 
-### 插件安装
+### 重置密码实现
 
-
-
-**classnames**
-
-
-
-```js
-yarn add  classnames --save
-```
-
-**使用方法**
-
-```js
-import classnames  from 'classnames';
-    //这里可以根据各属性动态添加，如果属性值为true则为其添加该类名，
-    //如果值为false，则不添加。这样达到了动态添加class的目的
-   <div  className={classNames('loader', 'fullScreen', { hidden: !spinning })}>
-      <div className="wrapper">
-        <div className="inner"></div>
-        <div className="text">LOADING</div>
-      </div>
-    </div>
-```
+- 创建UI界面，添加验证规则
+- 验证码发送
