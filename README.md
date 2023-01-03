@@ -21,14 +21,13 @@
 **services文件夹下创建调薪请求文件，实现方法所需接口api定义 如下demo:**
 
 ```js
-import requestFun from '../http.js';
-const { get, put, post, del } = requestFun;
+import ajax from '../http.js';
 
 // - 获取薪资列表
 export const getSalaryAdjustment = (params = {}) => {
   const reqParams = params.queryData ? params.queryData : {};
   delete params.queryData;
-  return get('/salaryAdjustment', { ...params, ...reqParams })
+  return ajax.get('/salaryAdjustment', { ...params, ...reqParams })
 };
 ```
 
