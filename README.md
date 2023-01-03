@@ -324,14 +324,3 @@ export const assessmentRule = {
       </Form.Item>
     </Form>
 ```
-
-
-
-
-
-
-
-
-
-
-
