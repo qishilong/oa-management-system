@@ -1,7 +1,8 @@
 # React_OA-System
 React 项目 - OA 系统
 # 织信OA管理系统案例
-
+>账户：admin <br/>
+>密码：123qwe
 ## 案例说明
 
 - **案例参考demo地址：**https://app.informat.cn/app/1Z70AnoS87ver/dashboard/1Z7070AnoS9SHJA/index
