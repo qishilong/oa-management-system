@@ -1,4 +1,5 @@
 import $http from "api"
+import { message } from "antd"
 
 let levelDetailData = {
     "6175ce3a11484a9c90b9c9e4": {
@@ -151,7 +152,9 @@ export default {
         },
         // 获取职级详情
         *_initLevelDetail({ payload }, { put, call }) {
-            const { data } = yield call($http.getLevelDetail, payload)
+            const { code, data, msg } = yield call($http.getLevelDetail, payload)
+            if (code) return message.error(msg || "获取职级详情失败");
+            message.success(msg || "获取职级详情成功")
             yield put({
                 type: "savaLevelDetail",
                 payload: { levelDetail: data || levelDetailData[payload._id] }

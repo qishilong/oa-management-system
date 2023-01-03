@@ -62,7 +62,7 @@ export default {
             // console.log(payload)
             const { code, data, msg } = yield call($http.getSalaryDetail, payload)
             if (code) return message.error(msg);
-            message.success(msg)
+            message.success(msg || "获取调薪详情成功")
             yield put({
                 type: "saveSalaryDetail",
                 payload: { salaryDetail: data || staticSalaryDetailData[payload._id] }

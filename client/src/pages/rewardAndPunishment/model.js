@@ -39,7 +39,7 @@ export default {
             // console.log(payload)
             const { code, data, msg } = yield call($http.getRewardAndPunishmentDetail, payload)
             if (code) return message.error(msg);
-            message.success(msg)
+            message.success(msg || "获取奖惩详情成功")
             yield put({
                 type: "saveRewardAndPunishmentDetail",
                 payload: { rewardAndPunishmentDetail: data || staticRewardAndPunishmentDetailData[payload._id] }
