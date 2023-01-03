@@ -1,24 +1,25 @@
 import iconMap from "../../../components/iconMap";
 import { dateFormat } from "../../../utils/dateFormat";
-import { salaryRules } from "../../../utils/rules";
-import { Tag } from "antd"
+import { rewardAndPunishmentRules } from "../../../utils/rules";
+import { Tag, Image } from "antd"
 import { mapData } from "../../../utils/mapData"
+import loadErrorImage from "../../../common/images/load_error.png"
 
-const Columns = (handleSave, getSalaryDetail, userInfo) => {
+const Columns = (handleSave, getRewardAndPunishmentDetail, userInfo) => {
     let columns = [
         {
-            title: "调薪原因",
-            dataIndex: "reason",
-            editable: userInfo.identity === 1,
+            title: "员工",
+            dataIndex: "staffName",
+            // editable: userInfo.identity === 1,
             render: (record, { _id }) => {
                 return (
                     <div className="staff-wrapper">
-                        <span className="user-name">{record ? record : "---"}</span>
+                        <span className="user-name">{record?.userName ? record?.userName : "---"}</span>
                         <span
                             className="detail-icon"
                             onClick={(e) => {
                                 e.stopPropagation();
-                                getSalaryDetail(_id);
+                                getRewardAndPunishmentDetail(_id);
                             }}
                         >
                             {iconMap.detail}
@@ -28,34 +29,34 @@ const Columns = (handleSave, getSalaryDetail, userInfo) => {
             }
         },
         {
-            title: "调整后薪资",
-            dataIndex: "newSalary",
+            title: "类型",
+            dataIndex: "type",
+            // editable: userInfo.identity === 1,
+            render: (record) => <Tag color={record > 2 ? "#f50" : "#108ee9"}>{mapData.rewardType[record - 1]}</Tag>
+        },
+        {
+            title: "原因",
+            dataIndex: "reason",
             editable: userInfo.identity === 1,
             render: (record) => record ? record : "---"
         },
         {
-            title: "员工",
-            dataIndex: "userName",
+            title: "详细信息",
+            dataIndex: "recordDesc",
             editable: userInfo.identity === 1,
-            render: (record) => record?.userName ? record?.userName : "---"
+            render: (record) => record ? record : "---"
         },
         {
-            title: "部门",
-            dataIndex: "userName",
-            editable: userInfo.identity === 1,
-            render: (record) => <Tag>{record?.department?.departmentName ? record?.department?.departmentName : "---"}</Tag>
-        },
-        {
-            title: "类型",
-            dataIndex: "salaryType",
-            editable: userInfo.identity === 1,
-            render: (record) => <Tag>{record ? mapData.salaryType[record] : "---"}</Tag>
-        },
-        {
-            title: "开始时间",
-            dataIndex: "startTime",
+            title: "记录时间",
+            dataIndex: "date",
             editable: userInfo.identity === 1,
             render: (record) => record ? dateFormat(record, "YYYY-MM-DD") : "---"
+        },
+        {
+            title: "附件",
+            dataIndex: "file",
+            // editable: userInfo.identity === 1,
+            render: (record) => <Image src={record ? record : "error"} width={50} fallback={loadErrorImage} />
         }
     ]
 
@@ -67,15 +68,12 @@ const Columns = (handleSave, getSalaryDetail, userInfo) => {
             onCell: (record) => {
                 let type = "";
                 switch (item.dataIndex) {
-                    case "startTime":
+                    case "date":
                         type = "dateNode";
-                        break;
-                    case "salaryType":
-                        type = "selectNode";
-                        break;
+                        break
                     default:
                         type = "inputNode";
-                        break;
+                        break
                 }
                 return {
                     record,
@@ -86,7 +84,7 @@ const Columns = (handleSave, getSalaryDetail, userInfo) => {
                     title: item.title,
                     handleSave,
                     width: "20%",
-                    rules: salaryRules[item.dataIndex]
+                    rules: rewardAndPunishmentRules[item.dataIndex]
                 }
             }
         }

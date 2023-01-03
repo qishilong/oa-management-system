@@ -55,7 +55,7 @@ export default {
             const { data, total } = yield call($http.getSalaryAdjustment, payload);
             yield put({
                 type: "saveSalary",
-                payload: { salaryList: data.list, total: total }
+                payload: { salaryList: data.list, total: data.total }
             })
         },
         *_initSalaryDetail({ payload }, { call, put }) {

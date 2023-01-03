@@ -26,7 +26,6 @@ function Assessment() {
 
     // 初始化绩效考核列表
     const _initAssessmentList = (data = {}) => {
-        console.log(1)
         dispatch({
             type: "assessment/_initAssessmentList",
             payload: {

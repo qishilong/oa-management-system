@@ -2,19 +2,20 @@ import React from 'react'
 import { Form, Input, DatePicker, message, Button, Row, Col, Select } from "antd"
 import DropPopover from '../../../components/DropPopover'
 import $http from "api";
-import staticSalaryList from '../../../staticList/staticSalaryList';
-import { salaryRules } from '../../../utils/rules';
+import staticRewardAndPunishmentList from '../../../staticList/staticRewardAndPunishmentList';
+import { rewardAndPunishmentRules } from '../../../utils/rules';
 import { mapData } from '../../../utils/mapData';
+import UploadComponent from '../../../components/Upload';
 const { Option } = Select
 
-const CreateSalary = ({ setDialogStatus, reloadPage }) => {
+const CreateRewardAndPunishment = ({ setDialogStatus, reloadPage }) => {
     const [form] = Form.useForm();
 
     const formMap = {
         input: (item) => <Input placeholder={item.initVal} />,
         popover: (item) => <Input
-            readOnly={true}
             placeholder={item.initVal}
+            readOnly={true}
             addonAfter={
                 <DropPopover
                     placeholderVal={item.labelVal}
@@ -23,7 +24,7 @@ const CreateSalary = ({ setDialogStatus, reloadPage }) => {
                     getSelectItem={(obj) => {
                         form.setFieldsValue({
                             [item.itemName]: obj[item.type],
-                            [item.itemName.split("V")[0]]: obj._id
+                            staffId: obj._id
                         })
                     }}
                 />
@@ -37,12 +38,15 @@ const CreateSalary = ({ setDialogStatus, reloadPage }) => {
             >
                 {value}
             </Option>)}
-        </Select>
+        </Select>,
+        // 上传附件图片
+        upload: (item) => <UploadComponent getNewAvatar={(file) => form.setFieldsValue({ file })} />
     }
 
     // 表单提交
     const _onFinish = async (data) => {
-        const { code, msg } = await $http.createSalary(data);
+        // console.log(data)
+        const { code, msg } = await $http.createRewardAndPunishment(data);
         if (!code) {
             message.success(msg);
             reloadPage();
@@ -58,7 +62,7 @@ const CreateSalary = ({ setDialogStatus, reloadPage }) => {
             layout="vertical"
             onFinish={_onFinish}
         >
-            {staticSalaryList.map((item, index) => {
+            {staticRewardAndPunishmentList.map((item, index) => {
                 return <Row key={index} justify={"space-between"}>
                     {item.map((childItem, childIndex) => {
                         return <Col key={childIndex} span={11}>
@@ -66,7 +70,7 @@ const CreateSalary = ({ setDialogStatus, reloadPage }) => {
                                 label={childItem.labelTxt}
                                 name={childItem.itemName}
                                 required={true}
-                                rules={salaryRules[childItem.itemName]}
+                                rules={rewardAndPunishmentRules[childItem.itemName]}
                                 style={childItem.style}
                             >
                                 {childItem.renderType && formMap[childItem.renderType](childItem)}
@@ -86,4 +90,4 @@ const CreateSalary = ({ setDialogStatus, reloadPage }) => {
     )
 }
 
-export default CreateSalary
+export default CreateRewardAndPunishment

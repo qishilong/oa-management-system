@@ -7,7 +7,7 @@ import $http from "api"
  * 七牛云对象存储
  * token值
  */
-const UploadComponent = ({ avatar, getNewAvatar }) => {
+const UploadComponent = ({ avatar = null, getNewAvatar }) => {
     const [token, setToken] = useState("");
     const [fileList, setFileLists] = useState([]);
     const [previewImg, setPreviewImg] = useState(null);

@@ -43,10 +43,12 @@ export const EditableCell = ({
 
     const toggleEdit = () => {
         setEditing(!editing);
+        // console.log(dataIndex, record, 111)
         form.setFieldsValue({
             [dataIndex]: record[dataIndex],
             onboardingTime: moment(record.onboardingTime), // 指定的时间字段的渲染操作
-            date: moment(record.date)   // 指定的时间字段的渲染操作
+            date: moment(record.date),   // 指定的时间字段的渲染操作
+            createTime: moment(record.createTime), //- 指定的时间字段的渲染操作
         });
     };
 

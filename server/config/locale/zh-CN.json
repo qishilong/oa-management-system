@@ -5,5 +5,6 @@
 	"invalid": "无效",
 	"should be an email": "应该是电子邮件格式",
 	"should be a number": "有些字段需要是数字",
-	"should be a string": "should be a string"
+	"should be a string": "should be a string",
+	"should be an array": "should be an array"
 }
