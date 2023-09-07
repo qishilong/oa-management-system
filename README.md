@@ -1,5 +1,5 @@
-# React_OA-System
-React 项目 - OA 系统
+# OA management system
+OA 管理系统
 # 织信OA管理系统项目
 >管理员账户：admin <br/>
 >管理员密码：123qwe
