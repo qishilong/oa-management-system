@@ -1,13 +1,7 @@
 # OA management system
 OA 管理系统
-# 织信OA管理系统项目
->管理员账户：admin <br/>
->管理员密码：123qwe
+# OA管理系统项目
 ## 项目说明
-
-- **项目参考demo地址：**https://app.informat.cn/app/1Z70AnoS87ver/dashboard/1Z7070AnoS9SHJA/index
-
-- **接口文档地址：**http://mock.duyiedu.com/project/128/interface/api
 
 - **三方UI库地址：**https://ant.design/index-cn
 
